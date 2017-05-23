@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+/// <summary>
+/// 비트의 흐름을 제어하는 기본 클래스
+/// </summary>
+[RequireComponent(typeof(AudioSource))]
 public class BeatCounter : MonoBehaviour
 {
     public enum InputResult
@@ -18,7 +22,7 @@ public class BeatCounter : MonoBehaviour
     }
 
 
-    public int BPM = 129;
+    public float BPM = 129;
     private float BPS = 0.0f;
 
     private float mCurrentTime = 0;
@@ -27,6 +31,7 @@ public class BeatCounter : MonoBehaviour
     public bool mIsMusicPlay = false;
 
     private AudioSource mAudioSource = null;
+    public AudioClip mInputSound = null;
 
     private float CurrentTrackTime
     {
@@ -53,7 +58,7 @@ public class BeatCounter : MonoBehaviour
         }
     }
 
-    private float mBeatCount
+    private float mBeatProgress
     {
         get
         {
@@ -65,14 +70,37 @@ public class BeatCounter : MonoBehaviour
 
     public Transform[] mCubeArray = null;
 
-    private byte[] mBeatData = new byte[] { 0, 1, 0, 1, 0, 1, 0, 1 };
+    private byte[] mBeatData = new byte[] 
+    {
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 1, 0, 0, 0, 1,
+        0, 0, 0, 1, 0, 0, 1, 0,
+        0, 0, 0, 1, 0, 0, 0, 1,
+        0, 0, 0, 1, 0, 0, 1, 0,
+        0, 0, 0, 1, 0, 0, 0, 1,
+        0, 0, 0, 1, 0, 0, 1, 0,
+        0, 0, 0, 1, 0, 0, 0, 1,
+        0, 0, 0, 1, 0, 0, 1, 0,
+        0, 0, 0, 1, 0, 0, 0, 1,
+        0, 0, 0, 1, 0, 0, 1, 0,
+        0, 0, 0, 1, 0, 0, 0, 1,
+        0, 0, 0, 1, 0, 0, 1, 0,
+        0, 0, 0, 1, 0, 0, 0, 1,
+        0, 0, 0, 1, 0, 0, 1, 0,
+        0, 0, 0, 1, 0, 0, 0, 1,
+        0, 0, 0, 1, 0, 0, 1, 0,
+        0, 0, 0, 1, 0, 0, 0, 1,
+        0, 0, 0, 1, 0, 0, 1, 0,
+        0, 0, 0, 1, 0, 0, 0, 1,
+        0, 0, 0, 1, 0, 0, 1, 0,
+    };
     private int mBeatIndex
     {
         get
         {
-            if(mBeatCount > 1)
+            if(mBeatProgress > 1)
             {
-                int index = Mathf.RoundToInt(mBeatCount) - 1;
+                int index = Mathf.RoundToInt(mBeatProgress) - 1;
                 return index - ((int)(index / mBeatData.Length)) * mBeatData.Length;
             }
             return 0;
@@ -107,18 +135,20 @@ public class BeatCounter : MonoBehaviour
             {
                 Stop();
             }
-            float tBeatCount = mBeatCount;
+            float tBeatCount = mBeatProgress;
             int tCount = Mathf.RoundToInt(tBeatCount);
 
             InputCode tInputCode = InputCode.None;
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                Debug.Log(mBeatIndex);
                 tInputCode = InputCode.SpaceDown;
             }
             else if(Input.GetKeyUp(KeyCode.Space))
             {
                 tInputCode = InputCode.SpaceUp;
             }
+
             InputResult tResult = CheckInputTiming(tInputCode, tCount, tBeatCount);
             switch (tResult)
             {
@@ -135,14 +165,17 @@ public class BeatCounter : MonoBehaviour
                     //ChangeCubeColor(Color.black);
                     break;
             }
-            
 
             if ((int)mPrevBeatCount != tCount)
             {
                 mPrevBeatCount = tCount;
 
-                mCubeArray[mBeatIndex].localScale = Vector3.one * 0.6f;
-                mCubeArray[mBeatIndex].DOScale(Vector3.one * 0.5f, 0.0f).SetDelay(BPS);
+                int tCubeIndex = (int)Mathf.Repeat(mBeatIndex, 8);
+                if (tCubeIndex < mCubeArray.Length)
+                {
+                    mCubeArray[tCubeIndex].localScale = Vector3.one * 0.6f;
+                    mCubeArray[tCubeIndex].DOScale(Vector3.one * 0.5f, 0.0f).SetDelay(BPS);
+                }
 
             }
 
@@ -152,6 +185,9 @@ public class BeatCounter : MonoBehaviour
             }
         }
     }
+    
+
+
     /// <summary>
     /// 입력에 따른 판정을 실시한다
     /// </summary>
@@ -161,40 +197,88 @@ public class BeatCounter : MonoBehaviour
     /// <returns>판정 결과</returns>
     private InputResult CheckInputTiming(InputCode tInputCode, int tCount, float tCurrentTiming)
     {
-        if ((tInputCode == InputCode.SpaceDown && mBeatData[mBeatIndex] == 1) ||
-            (tInputCode == InputCode.SpaceUp && mBeatData[mBeatIndex] == 2))
-        {
-            Debug.Log(string.Format("{0} [{1}] {2}", tCount - mPerfectRatio, tCurrentTiming, tCount + mPerfectRatio));
+        InputResult tResult = InputResult.Fail;
 
-            if (tCount - mPerfectRatio > tCurrentTiming)
+        if (mBeatData[mBeatIndex] != 0)
+        {
+            if ((tInputCode == InputCode.SpaceDown && mBeatData[mBeatIndex] == 1) ||
+                (tInputCode == InputCode.SpaceUp && mBeatData[mBeatIndex] == 2))
             {
-                Debug.Log("Too fast");
-                return InputResult.Fast;
+
+                if (tCount - mPerfectRatio > tCurrentTiming)
+                {
+                    Debug.Log("Too fast");
+                    tResult = InputResult.Fast;
+                }
+                else if (tCount + mPerfectRatio < tCurrentTiming)
+                {
+                    Debug.Log("Too Late");
+                    tResult = InputResult.Late;
+                }
+                else
+                {
+                    Debug.Log("Perfect!!");
+                    tResult = InputResult.Perfect;
+                }
+
+                Debug.Log(tResult.ToString() + " / " + string.Format("{0} [{1}] {2}", tCount - mPerfectRatio, tCurrentTiming, tCount + mPerfectRatio));
             }
-            else if (tCount + mPerfectRatio < tCurrentTiming)
-            {
-                Debug.Log("Too Late");
-                return InputResult.Late;
-            }
-            else
-            {
-                Debug.Log("Perfect!!");
-                return InputResult.Perfect;
-            }
+
         }
-        return InputResult.Fail;
+
+        return tResult;
     }
 
     private void ChangeCubeColor(Color tColor)
     {
-        var mat = mCubeArray[mBeatIndex].GetComponent<Renderer>().material;
+        int tCubeIndex = (int)Mathf.Repeat(mBeatIndex, 8);
+        var mat = mCubeArray[tCubeIndex].GetComponent<Renderer>().material;
         mat.color = tColor;
         mat.DOColor(Color.white, 0.0f).SetDelay(BPS);
     }
 
-    private void Stop()
+    /// <summary>
+    /// 정지
+    /// </summary>
+    public void Stop()
     {
         mIsPlaying = false;
         mCurrentTime = 0;
+    }
+
+    /**
+    * @brief
+    * 두 파라메터를 입력받아 더한 값을 리턴1
+    * @warning 주의 사항
+    * @param aa 더할 값 11
+    * @param bb 더할 값 21
+    * @return a + b를 리턴한다.1
+    * @bug 존재하는 버그에 대한 설명
+    * @todo. 해야할 목록에 대하여.@
+    **/
+    public void TestMethod()
+    {
+
+    }
+
+    /// <summary>
+    /// 테스트 2
+    /// </summary>
+    /// <Warning>주의사항</Warning>
+    /// <param name="none">파라매터</param>
+    /// <returns>리턴</returns>
+    /// @code{.cs}
+    /// public void Sample()
+    /// {
+    ///     Debug.Log("sads");
+    /// }
+    /// 
+    /// int tA = 0;
+    /// @endcode
+    /// <Bug>버그</Bug>
+    /// <Todo>해야할 일</Todo>
+    public void TestMethod2()
+    {
+
     }
 }

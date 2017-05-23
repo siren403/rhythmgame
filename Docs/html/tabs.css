@@ -1,8 +1,4 @@
-.tabs, .tabs2, .tabs3 {
-    width: 100%;
-    z-index: 101;
-    font-size: 13px;
-}
+/* tabs styles, based on http://www.alistapart.com/articles/slidingdoors */
 
 div.navigation {
 	display:block;
@@ -13,6 +9,7 @@ div.navigation {
 	padding-bottom:30px;
 	border-bottom:1px dotted #E0E0E0;
 	height: 60px;
+	background:url(background_navigation.png);
 }
 
 div.contents {
@@ -44,7 +41,7 @@ DIV.tabs LI, DIV.tabs FORM
    display          : inline;
    margin           : 0px;
    padding          : 0px;
-	background-color:#3C4244;
+	background-color:#FFFFFF;
 }
 
 DIV.tabs FORM
@@ -68,7 +65,7 @@ DIV.tabs A:hover
 DIV.tabs A:link, DIV.tabs A:visited,
 DIV.tabs A:active, DIV.tabs A:hover
 {
-       color: #9cccd5;
+       color: #1A419D;
 }
 
 DIV.tabs SPAN
@@ -77,12 +74,8 @@ DIV.tabs SPAN
    display          : block;
    padding          : 5px 9px;
    white-space      : nowrap;
-   text-transform: uppercase;
-   font: 1.4em "arial", sans-serif;
-   letter-spacing: -0.04em;
-   margin-bottom: 0px;
-	border-top:1px dotted #75715E;
-	/*border-bottom:1px dotted #75715E;*/
+	border-top:1px dotted #E0E0E0;
+	border-bottom:1px dotted #E0E0E0;
 }
 
 DIV.tabs #MSearchBox
@@ -90,7 +83,6 @@ DIV.tabs #MSearchBox
    float            : right;
    display          : inline;
    font-size        : 1em;
-   background-color:#3C4244;
 }
 
 DIV.tabs TD
@@ -109,19 +101,14 @@ DIV.tabs SPAN {float : none;}
 DIV.tabs A:hover SPAN
 {
    background-position: 0% -150px;
-
 }
 
 DIV.tabs LI.current A
 {
    background-position: 100% -150px;
    border-width     : 0px;
-	background-color:	#272822;
-	background: #272822 url(img_downArrow.png) center top no-repeat;
-   text-transform: uppercase;
-   font: 1.4em "arial", sans-serif;
-   letter-spacing: -0.04em;
-   margin-bottom: 0px;
+	background-color:	#F0F0F0;
+	background: #F0F0F0 url(img_downArrow.png) center bottom no-repeat;
 }
 
 DIV.tabs LI.current SPAN
