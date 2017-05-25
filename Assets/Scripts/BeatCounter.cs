@@ -47,7 +47,7 @@ public class BeatCounter : MonoBehaviour
                 tTime = mCurrentTime;
             }
 
-            tTime -= BPS * 2;
+            tTime -= BPS * 2.25f;
 
             if(tTime < 0)
             {
@@ -73,26 +73,29 @@ public class BeatCounter : MonoBehaviour
     private byte[] mBeatData = new byte[] 
     {
         0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 1, 0, 0, 0, 1,
-        0, 0, 0, 1, 0, 0, 1, 0,
-        0, 0, 0, 1, 0, 0, 0, 1,
-        0, 0, 0, 1, 0, 0, 1, 0,
-        0, 0, 0, 1, 0, 0, 0, 1,
-        0, 0, 0, 1, 0, 0, 1, 0,
-        0, 0, 0, 1, 0, 0, 0, 1,
-        0, 0, 0, 1, 0, 0, 1, 0,
-        0, 0, 0, 1, 0, 0, 0, 1,
-        0, 0, 0, 1, 0, 0, 1, 0,
-        0, 0, 0, 1, 0, 0, 0, 1,
-        0, 0, 0, 1, 0, 0, 1, 0,
-        0, 0, 0, 1, 0, 0, 0, 1,
-        0, 0, 0, 1, 0, 0, 1, 0,
-        0, 0, 0, 1, 0, 0, 0, 1,
-        0, 0, 0, 1, 0, 0, 1, 0,
-        0, 0, 0, 1, 0, 0, 0, 1,
-        0, 0, 0, 1, 0, 0, 1, 0,
-        0, 0, 0, 1, 0, 0, 0, 1,
-        0, 0, 0, 1, 0, 0, 1, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
     };
     private int mBeatIndex
     {
@@ -166,18 +169,18 @@ public class BeatCounter : MonoBehaviour
                     break;
             }
 
-            if ((int)mPrevBeatCount != tCount)
-            {
-                mPrevBeatCount = tCount;
+            //if ((int)mPrevBeatCount != tCount)
+            //{
+            //    mPrevBeatCount = tCount;
 
-                int tCubeIndex = (int)Mathf.Repeat(mBeatIndex, 8);
-                if (tCubeIndex < mCubeArray.Length)
-                {
-                    mCubeArray[tCubeIndex].localScale = Vector3.one * 0.6f;
-                    mCubeArray[tCubeIndex].DOScale(Vector3.one * 0.5f, 0.0f).SetDelay(BPS);
-                }
+            //    int tCubeIndex = (int)Mathf.Repeat(mBeatIndex, 8);
+            //    if (tCubeIndex < mCubeArray.Length)
+            //    {
+            //        mCubeArray[tCubeIndex].localScale = Vector3.one * 0.6f;
+            //        mCubeArray[tCubeIndex].DOScale(Vector3.one * 0.5f, 0.0f).SetDelay(BPS);
+            //    }
 
-            }
+            //}
 
             if (mIsMusicPlay == false)
             {
