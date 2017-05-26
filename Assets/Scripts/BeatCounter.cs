@@ -88,6 +88,8 @@ public class BeatCounter : MonoBehaviour
     }
 
     public Transform[] mCubeArray = null;
+    public Renderer BeatPanel = null;
+    public Renderer CheckTimingPanel = null;
 
     public List<ActionInfo> PushActionInfo = new List<ActionInfo>();
     public List<ActionInfo> mActionInfoList = new List<ActionInfo>();
@@ -105,13 +107,14 @@ public class BeatCounter : MonoBehaviour
     //    }
     //}
 
-    private float mPerfectRatio = 0.2f;
+    private float mPerfectRatio = 0.1f;
     private int mPrevRoundProgress = 0;
     private int mActionIndex = 0;
 
     public GameObject PFBall = null;
     public Transform BallStartPoint = null;
     public Transform BallEndPoint = null;
+    public Transform BallPerpectPoint = null;
     private GameObject CurrentBall = null;
     // Use this for initialization
     void Start()
@@ -156,11 +159,11 @@ public class BeatCounter : MonoBehaviour
 
             if (mActionInfoList[mActionIndex].time - CurrentTrackTime <= 0.001f)
             {
+                BeatPanel.material.DOColor(Color.white, BPS * 0.5f).From();
+
                 if (mActionInfoList[mActionIndex].soundCode != -1)
                 {
                     mAudioSource.PlayOneShot(SEList[mActionInfoList[mActionIndex].soundCode]);
-                    
-
                 }
                 if(mActionInfoList[mActionIndex].actionCode != 0)
                 {
@@ -194,16 +197,19 @@ public class BeatCounter : MonoBehaviour
             switch (tResult)
             {
                 case InputResult.Fast:
-                    ChangeCubeColor(Color.red);
+                    CheckTimingPanel.material.DOColor(Color.red, BPS * 0.8f).From();
                     break;
                 case InputResult.Perfect:
-                    ChangeCubeColor(Color.green);
+                    CheckTimingPanel.material.DOColor(Color.green, BPS * 0.8f).From();
+                    CurrentBall.transform.DOJump(BallPerpectPoint.position, 2, 1, BPS)
+                       .OnComplete(() => CurrentBall.SetActive(false));
+                    //CurrentBall.SetActive(false);
                     break;
                 case InputResult.Late:
-                    ChangeCubeColor(Color.blue);
+                    CheckTimingPanel.material.DOColor(Color.blue, BPS * 0.8f).From();
                     break;
                 case InputResult.Fail:
-                    //ChangeCubeColor(Color.black);
+                    //CheckTimingPanel.material.DOColor(Color.black, BPS * 0.5f).From();
                     break;
             }
 
@@ -254,7 +260,7 @@ public class BeatCounter : MonoBehaviour
                 {
                     Debug.Log("Perfect!!");
                     tResult = InputResult.Perfect;
-                    CurrentBall.SetActive(false);
+                   
                 }
                 Debug.Log(tResult.ToString() + " / " + string.Format("{0} [{1}] {2}",
                     tRoundProgress - mPerfectRatio,
