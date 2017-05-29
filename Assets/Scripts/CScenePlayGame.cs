@@ -19,10 +19,9 @@ public class CScenePlayGame : SceneBase
 
     protected override void BeforeInitialize()
     {
-        Debug.Log("PlayGame Before");
+        InstSequencePlayer.SetReceiver(InstHoleInOne);
     }
     protected override void Initialize()
     {
-        Debug.Log("PlayGame Init");
     }
 }
