@@ -2,27 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UniRx;
+using System;
 
 /// <summary>
 /// 비트의 흐름을 제어하는 기본 클래스
 /// </summary>
 [RequireComponent(typeof(AudioSource))]
-public class BeatCounter : MonoBehaviour
+public class CSequencePlayer : PresenterBase
 {
     [System.Serializable]
-    public struct ActionInfo
+    public class SequenceData
     {
-        public int index;
+        public float beat;
         public float time;
         public InputCode input;
         public int soundCode;
         public int actionCode;
 
-        public ActionInfo(int tIndex,float tTime)
+        public SequenceData(float tBeat,float tTime)
         {
-            index = tIndex;
+            beat = tBeat;
             time = tTime;
-            actionCode = 0;
+            actionCode = -1;
             soundCode = -1;
             input = InputCode.None;
         }
@@ -87,56 +89,89 @@ public class BeatCounter : MonoBehaviour
         }
     }
 
-    public Transform[] mCubeArray = null;
+    protected override IPresenter[] Children
+    {
+        get
+        {
+            return EmptyChildren;
+        }
+    }
+
     public Renderer BeatPanel = null;
     public Renderer CheckTimingPanel = null;
 
-    public List<ActionInfo> PushActionInfo = new List<ActionInfo>();
-    public List<ActionInfo> mActionInfoList = new List<ActionInfo>();
+    public List<SequenceData> InsertSequenceList = new List<SequenceData>();
+    public List<SequenceData> SequenceList = new List<SequenceData>();
    
-    //private int mBeatIndex
-    //{
-    //    get
-    //    {
-    //        if(mBeatProgress > 1)
-    //        {
-    //            int index = Mathf.RoundToInt(mBeatProgress) - 1;
-    //            return index - ((int)(index / mActionInfoList.Count)) * mActionInfoList.Count;
-    //        }
-    //        return 0;
-    //    }
-    //}
-
     private float mPerfectRatio = 0.1f;
     private int mPrevRoundProgress = 0;
-    private int mActionIndex = 0;
+    private int mSequenceIndex = 0;
+    private int mAlreadySequenceIndex = 0;
 
     public GameObject PFBall = null;
     public Transform BallStartPoint = null;
     public Transform BallEndPoint = null;
     public Transform BallPerpectPoint = null;
     private GameObject CurrentBall = null;
-    // Use this for initialization
-    void Start()
+
+    protected override void BeforeInitialize()
     {
+        Debug.Log("Seq Before");
+
         mAudioSource = GetComponent<AudioSource>();
         BPS = 60.0f / (float)BPM;
         Debug.Log("BPS : " + BPS);
+
+        int tInsertActionIndex = 0;
         for (int i = 0; i < mAudioSource.clip.length / BPS; i++)
         {
-            mActionInfoList.Add(new ActionInfo(i, i * BPS));
-        }
-        Debug.Log("ActionInfo Count : " + mActionInfoList.Count);
+            bool tIsInsert = false;
+            float tBeat = i;
+            float tTime = i * BPS;
 
-        foreach(var info in PushActionInfo)
-        {
-            var tBaseInfo = mActionInfoList[info.index];
-            tBaseInfo.input = info.input;
-            tBaseInfo.soundCode = info.soundCode;
-            tBaseInfo.actionCode = info.actionCode;
-            mActionInfoList[info.index] = tBaseInfo;
-        }
+            for (; tInsertActionIndex < InsertSequenceList.Count;)
+            {
+                if (tBeat == InsertSequenceList[tInsertActionIndex].beat)
+                {
+                    var tData = new SequenceData(tBeat, tTime);
+                    tData.input = InsertSequenceList[tInsertActionIndex].input;
+                    tData.soundCode = InsertSequenceList[tInsertActionIndex].soundCode;
+                    tData.actionCode = InsertSequenceList[tInsertActionIndex].actionCode;
+                    tIsInsert = true;
+                    SequenceList.Add(tData);
+                    tInsertActionIndex++;
+                    break;
+                }
+                else
+                {
+                    if (InsertSequenceList[tInsertActionIndex].beat < tBeat + 1)
+                    {
+                        var tData = new SequenceData(tBeat, tTime);
+                        tData.input = InsertSequenceList[tInsertActionIndex].input;
+                        tData.soundCode = InsertSequenceList[tInsertActionIndex].soundCode;
+                        tData.actionCode = InsertSequenceList[tInsertActionIndex].actionCode;
+                        tIsInsert = true;
+                        SequenceList.Add(tData);
+                        tInsertActionIndex++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            if (tIsInsert == false)
+            {
+                SequenceList.Add(new SequenceData(tBeat, tTime));
+            }
 
+        }
+        Debug.Log("ActionInfo Count : " + SequenceList.Count);
+    }
+
+    protected override void Initialize()
+    {
+        Debug.Log("Seq Init");
     }
 
     // Update is called once per frame
@@ -157,15 +192,23 @@ public class BeatCounter : MonoBehaviour
                 Stop();
             }
 
-            if (mActionInfoList[mActionIndex].time - CurrentTrackTime <= 0.001f)
+            if(CurrentTrackTime - SequenceList[mSequenceIndex].time > SequenceList[mSequenceIndex + 1].time - CurrentTrackTime)
+            {
+                Debug.Log(string.Format("Left : {0}, Right : {1} [{2}]",
+               CurrentTrackTime - SequenceList[mSequenceIndex].time,
+               SequenceList[mSequenceIndex + 1].time - CurrentTrackTime,mSequenceIndex));
+                mSequenceIndex++;
+            }
+
+            if (mSequenceIndex != mAlreadySequenceIndex && SequenceList[mSequenceIndex].time - CurrentTrackTime <= 0.0001f)
             {
                 BeatPanel.material.DOColor(Color.white, BPS * 0.5f).From();
 
-                if (mActionInfoList[mActionIndex].soundCode != -1)
+                if (SequenceList[mSequenceIndex].soundCode != -1)
                 {
-                    mAudioSource.PlayOneShot(SEList[mActionInfoList[mActionIndex].soundCode]);
+                    mAudioSource.PlayOneShot(SEList[SequenceList[mSequenceIndex].soundCode]);
                 }
-                if(mActionInfoList[mActionIndex].actionCode != 0)
+                if(SequenceList[mSequenceIndex].actionCode != -1)
                 {
                     if (CurrentBall == null)
                     {
@@ -177,15 +220,13 @@ public class BeatCounter : MonoBehaviour
                     CurrentBall.transform.DOJump(BallEndPoint.position, 2, 1, BPS)
                         .SetEase(Ease.Linear);
                 }
-
-                mActionIndex++;
+                mAlreadySequenceIndex = mSequenceIndex;
             }
 
             InputCode tInputCode = InputCode.None;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 tInputCode = InputCode.SpaceDown;
-                Debug.Log(mActionIndex);
 
             }
             else if(Input.GetKeyUp(KeyCode.Space))
@@ -212,8 +253,6 @@ public class BeatCounter : MonoBehaviour
                     //CheckTimingPanel.material.DOColor(Color.black, BPS * 0.5f).From();
                     break;
             }
-
-
            
 
             if (mIsMusicPlay == false)
@@ -235,50 +274,42 @@ public class BeatCounter : MonoBehaviour
     private InputResult CheckInputTiming(InputCode tInputCode)
     {
 
+        if(tInputCode == InputCode.None)
+        {
+            return InputResult.None;
+        }
+
         int tRoundProgress = Mathf.RoundToInt(mBeatProgress);
 
         InputResult tResult = InputResult.Fail;
 
-        if (mActionInfoList[mActionIndex].input != InputCode.None)
+        SequenceData tSeqData = SequenceList[mSequenceIndex];
+        
+        if (tSeqData.input != InputCode.None && tSeqData.input == tInputCode)
         {
-
-            //((tInputCode == InputCode.SpaceDown && mBeatData[mBeatIndex] == 1) ||
-            //(tInputCode == InputCode.SpaceUp && mBeatData[mBeatIndex] == 2))
-            if (mActionInfoList[mActionIndex].input == tInputCode)
+            if (tRoundProgress - mPerfectRatio > mBeatProgress)
             {
-                if (tRoundProgress - mPerfectRatio > mBeatProgress)
-                {
-                    Debug.Log("Too fast");
-                    tResult = InputResult.Fast;
-                }
-                else if (tRoundProgress + mPerfectRatio < mBeatProgress)
-                {
-                    Debug.Log("Too Late");
-                    tResult = InputResult.Late;
-                }
-                else
-                {
-                    Debug.Log("Perfect!!");
-                    tResult = InputResult.Perfect;
-                   
-                }
-                Debug.Log(tResult.ToString() + " / " + string.Format("{0} [{1}] {2}",
-                    tRoundProgress - mPerfectRatio,
-                    mBeatProgress,
-                    tRoundProgress + mPerfectRatio));
+                Debug.Log("Too fast");
+                tResult = InputResult.Fast;
             }
-            
+            else if (tRoundProgress + mPerfectRatio < mBeatProgress)
+            {
+                Debug.Log("Too Late");
+                tResult = InputResult.Late;
+            }
+            else
+            {
+                Debug.Log("Perfect!!");
+                tResult = InputResult.Perfect;
+
+            }
+            Debug.Log(tResult.ToString() + " / " + string.Format("{0} [{1}] {2}",
+                tRoundProgress - mPerfectRatio,
+                mBeatProgress,
+                tRoundProgress + mPerfectRatio));
         }
 
         return tResult;
-    }
-
-    private void ChangeCubeColor(Color tColor)
-    {
-        int tCubeIndex = (int)Mathf.Repeat(mActionIndex, 8);
-        var mat = mCubeArray[tCubeIndex].GetComponent<Renderer>().material;
-        mat.color = tColor;
-        mat.DOColor(Color.white, 0.0f).SetDelay(BPS);
     }
 
     /// <summary>
@@ -325,4 +356,6 @@ public class BeatCounter : MonoBehaviour
     {
 
     }
+
+   
 }
