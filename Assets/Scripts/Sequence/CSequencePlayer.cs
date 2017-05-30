@@ -18,17 +18,28 @@ public class CSequencePlayer : PresenterBase
     }
     private static ISequenceReceiver EmptyReceiver = new CEmptySequenceReceiver();
 
-    public float BPM = 129;
-    private float mBPS = 0.0f;
     public float BPS
     {
         get
         {
-            return mBPS;
+            if(mCurrentStageData == null)
+            {
+                return 0f;
+            }
+            return mCurrentStageData.BPS;
         }
     }
-
-    public float StartBeatOffset = 0.0f;
+    public float StartBeatOffset
+    {
+        get
+        {
+            if(mCurrentStageData == null)
+            {
+                return 0f;
+            }
+            return mCurrentStageData.StartBeatOffset;
+        }
+    }
 
     private float mCurrentTime = 0;
 
@@ -51,7 +62,7 @@ public class CSequencePlayer : PresenterBase
                 tTime = mCurrentTime;
             }
 
-            tTime += mBPS * StartBeatOffset;
+            tTime += BPS * StartBeatOffset;
 
             if(tTime < 0)
             {
@@ -66,7 +77,7 @@ public class CSequencePlayer : PresenterBase
     {
         get
         {
-            return CurrentTrackTime / mBPS;
+            return CurrentTrackTime / BPS;
         }
     }
 
@@ -78,9 +89,6 @@ public class CSequencePlayer : PresenterBase
         }
     }
 
-    public Renderer BeatPanel = null;
-    public Renderer CheckTimingPanel = null;
-
     public CSequenceData CurrentSequenceData = null;
     public List<CSequenceData> InsertSequenceList = new List<CSequenceData>();
     public List<CSequenceData> SequenceList = new List<CSequenceData>();
@@ -90,46 +98,56 @@ public class CSequencePlayer : PresenterBase
     private int mAlreadySequenceIndex = 0;
     private int mSuccessSequenceIndex = 0;
 
-    public GameObject PFBall = null;
-    public Transform BallStartPoint = null;
-    public Transform BallEndPoint = null;
-    public Transform BallPerpectPoint = null;
-    private GameObject CurrentBall = null;
-
     private ISequenceReceiver mCurrentReceiver = EmptyReceiver;
+    private CStageData mCurrentStageData = null;
+
+    public void SetReceiver(ISequenceReceiver tReceiver)
+    {
+        if (tReceiver != null)
+        {
+            mCurrentReceiver = tReceiver;
+        }
+        else
+        {
+            mCurrentReceiver = EmptyReceiver;
+        }
+    }
+    public void SetStageData(CStageData tData)
+    {
+        mCurrentStageData = tData;
+    }
 
     protected override void BeforeInitialize()
     {
         mAudioSource = GetComponent<AudioSource>();
-        mBPS = 60.0f / (float)BPM;
-        Debug.Log("BPS : " + mBPS);
+        Debug.Log("BPS : " + BPS);
 
-        Queue<CSequenceData> tInsertSeqData = new Queue<CSequenceData>(InsertSequenceList);
-        for (int tBeat = 0; tBeat < mAudioSource.clip.length / mBPS;)
+        Queue<CSequenceData> tInsertSeqData = new Queue<CSequenceData>(mCurrentStageData.SequenceList);
+        for (int tBeat = 0; tBeat < mAudioSource.clip.length / BPS;)
         {
             CSequenceData tSeqData = null;
             if (tInsertSeqData.Count > 0)
             {
-                if (tBeat < tInsertSeqData.Peek().beat)
+                if (tBeat < tInsertSeqData.Peek().Beat)
                 {
-                    tSeqData = new CSequenceData(tBeat, tBeat * mBPS);
+                    tSeqData = new CSequenceData(tBeat, tBeat * BPS);
                     tBeat++;
                 }
-                else if(tBeat == tInsertSeqData.Peek().beat)
+                else if(tBeat == tInsertSeqData.Peek().Beat)
                 {
                     tSeqData = tInsertSeqData.Dequeue();
-                    tSeqData.time = tSeqData.beat * mBPS;
+                    tSeqData.SetTime(tSeqData.Beat * BPS);
                     tBeat++;
                 }
                 else
                 {
                     tSeqData = tInsertSeqData.Dequeue();
-                    tSeqData.time = tSeqData.beat * mBPS;
+                    tSeqData.SetTime(tSeqData.Beat * BPS);
                 }
             }
             else
             {
-                tSeqData = new CSequenceData(tBeat, tBeat * mBPS);
+                tSeqData = new CSequenceData(tBeat, tBeat * BPS);
                 tBeat++;
             }
             SequenceList.Add(tSeqData);
@@ -139,6 +157,7 @@ public class CSequencePlayer : PresenterBase
 
     protected override void Initialize()
     {
+
     }
 
 
@@ -161,7 +180,7 @@ public class CSequencePlayer : PresenterBase
                 Stop();
             }
 
-            if (mSequenceIndex != mAlreadySequenceIndex && SequenceList[mSequenceIndex].time - CurrentTrackTime <= 0.0001f)
+            if (mSequenceIndex != mAlreadySequenceIndex && SequenceList[mSequenceIndex].Time - CurrentTrackTime <= 0.0001f)
             {
                 mCurrentReceiver.OnEveryBeat(this, SequenceList[mSequenceIndex]);
                 mAlreadySequenceIndex = mSequenceIndex;
@@ -186,10 +205,10 @@ public class CSequencePlayer : PresenterBase
             }
             
 
-            if (CurrentTrackTime - SequenceList[mSequenceIndex].time > SequenceList[mSequenceIndex + 1].time - CurrentTrackTime)
+            if (CurrentTrackTime - SequenceList[mSequenceIndex].Time > SequenceList[mSequenceIndex + 1].Time - CurrentTrackTime)
             {
                 if (mSuccessSequenceIndex < mSequenceIndex &&
-                    SequenceList[mSequenceIndex].input != InputCode.None &&
+                    SequenceList[mSequenceIndex].Input != InputCode.None &&
                     tInputCode == InputCode.None)//입력데이터가 None이 아닌데 입력이 없는 경우(미 입력)
                 {
                     Debug.Log("Fail");
@@ -205,17 +224,7 @@ public class CSequencePlayer : PresenterBase
         }
     }
 
-    public void SetReceiver(ISequenceReceiver tReceiver)
-    {
-        if (tReceiver != null)
-        {
-            mCurrentReceiver = tReceiver;
-        }
-        else
-        {
-            mCurrentReceiver = EmptyReceiver;
-        }
-    }
+    
 
     /// <summary>
     /// 입력에 따른 판정을 실시한다
@@ -234,7 +243,7 @@ public class CSequencePlayer : PresenterBase
         CSequenceData tSeqData = SequenceList[mSequenceIndex];
         
 
-        if (tSeqData.input != InputCode.None && tSeqData.input == tInputCode)//입력데이터가 None아니고, 일치한다면 (정확한 입력)
+        if (tSeqData.Input != InputCode.None && tSeqData.Input == tInputCode)//입력데이터가 None아니고, 일치한다면 (정확한 입력)
         {
             if (tRoundProgress - mPerfectRatio > mBeatProgress)
             {

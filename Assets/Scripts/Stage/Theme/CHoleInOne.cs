@@ -34,11 +34,11 @@ public class CHoleInOne : CThemeBase, ISequenceReceiver
     public void OnEveryBeat(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
         BeatPanel.material.DOColor(Color.white, tSeqPlayer.BPS * 0.5f).From();
-        if (tData.soundCode != -1)
+        if (tData.SoundCode != -1)
         {
-            mAudioSource.PlayOneShot(SEList[tData.soundCode]);
+            mAudioSource.PlayOneShot(SEList[tData.SoundCode]);
         }
-        if (tData.actionCode != -1)
+        if (tData.ActionCode != -1)
         {
             if (CurrentBall == null)
             {
@@ -51,6 +51,8 @@ public class CHoleInOne : CThemeBase, ISequenceReceiver
                 .SetEase(Ease.Linear);
         }
     }
+
+
 
     public void OnInputResult(CSequencePlayer tSeqPlayer, InputResult tResult)
     {
