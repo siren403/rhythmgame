@@ -1,0 +1,297 @@
+==============
+AUTO-GENERATED
+==============
+
+Game Specifications:
+   Version: v2.11.0
+   Application type: Desktop
+   Lazy loading enabled: true
+
+Operating System Specifications:
+   Java Version: 1.8.0_111 64 bit
+   OS Name: Windows 10
+   OS Version: 10.0
+   JVM memory available: 1846272 KB
+
+Processor Specifications:
+   Cores: 4
+
+Graphics Specifications:
+   Resolution: 1280x720
+   Fullscreen: false
+   GL_VENDOR: Intel
+   Graphics: Intel(R) HD Graphics 4400
+   GL Version: 4.3.0 - Build 20.19.15.4539
+
+
+
+[00:19:08.722] [Tick 0] [INFO] Getting version from https://api.github.com/repos/chrislo27/RhythmHeavenRemixEditor2/releases/latest...
+[00:19:08.918] [Tick 0] [INFO] Loaded language English ()
+[00:19:08.923] [Tick 0] [INFO] Loaded language English ()
+[00:19:08.932] [Tick 0] [INFO] Loaded language Fran?ais (French) (fr)
+[00:19:08.941] [Tick 0] [INFO] Loaded language Espa?ol (Spanish) (es)
+[00:19:11.085] [Tick 0] [INFO] Finished loading all unmanaged assets, took 8 ms
+[00:19:11.098] [Tick 0] [INFO] Loading countIn
+[00:19:11.112] [Tick 0] [INFO] Version gotten successfully! Took 2388.3987 ms | State: AVAILABLE | GitHub version: v2.12.3
+[00:19:11.123] [Tick 0] [INFO] Loaded countIn with 9 cues and 5 patterns, took 24.293746 ms
+[00:19:11.123] [Tick 0] [INFO] Loading extraSFX
+[00:19:11.125] [Tick 0] [INFO] Loaded extraSFX with 2 cues and 0 patterns, took 1.586412 ms
+[00:19:11.125] [Tick 0] [INFO] Loading airboarderEn
+[00:19:11.129] [Tick 0] [INFO] Loaded airboarderEn with 7 cues and 4 patterns, took 4.219722 ms
+[00:19:11.130] [Tick 0] [INFO] Loading airboarderEs
+[00:19:11.133] [Tick 0] [INFO] Loaded airboarderEs with 4 cues and 3 patterns, took 2.208482 ms
+[00:19:11.134] [Tick 0] [INFO] Loading airboarderJa
+[00:19:11.138] [Tick 0] [INFO] Loaded airboarderJa with 6 cues and 4 patterns, took 3.864954 ms
+[00:19:11.138] [Tick 0] [INFO] Loading airRallyEn
+[00:19:11.144] [Tick 0] [INFO] Loaded airRallyEn with 24 cues and 9 patterns, took 6.311733 ms
+[00:19:11.145] [Tick 0] [INFO] Loading airRallyJa
+[00:19:11.152] [Tick 0] [INFO] Loaded airRallyJa with 24 cues and 9 patterns, took 7.567922 ms
+[00:19:11.153] [Tick 0] [INFO] Loading animalAcrobat
+[00:19:11.155] [Tick 0] [INFO] Loaded animalAcrobat with 7 cues and 3 patterns, took 2.301747 ms
+[00:19:11.156] [Tick 0] [INFO] Loading basketballGirls
+[00:19:11.158] [Tick 0] [INFO] Loaded basketballGirls with 9 cues and 2 patterns, took 2.135743 ms
+[00:19:11.158] [Tick 0] [INFO] Loading bigRockFinish
+[00:19:11.162] [Tick 0] [INFO] Loaded bigRockFinish with 12 cues and 5 patterns, took 4.009539 ms
+[00:19:11.163] [Tick 0] [INFO] Loading blueBear
+[00:19:11.164] [Tick 0] [INFO] Loaded blueBear with 4 cues and 2 patterns, took 1.784099 ms
+[00:19:11.165] [Tick 0] [INFO] Loading blueBirdsEn
+[00:19:11.167] [Tick 0] [INFO] Loaded blueBirdsEn with 10 cues and 2 patterns, took 1.863086 ms
+[00:19:11.167] [Tick 0] [INFO] Loading blueBirdsEs
+[00:19:11.169] [Tick 0] [INFO] Loaded blueBirdsEs with 10 cues and 2 patterns, took 2.032214 ms
+[00:19:11.170] [Tick 0] [INFO] Loading blueBirdsJa
+[00:19:11.172] [Tick 0] [INFO] Loaded blueBirdsJa with 10 cues and 2 patterns, took 2.127265 ms
+[00:19:11.172] [Tick 0] [INFO] Loading boardMeeting
+[00:19:11.174] [Tick 0] [INFO] Loaded boardMeeting with 14 cues and 1 patterns, took 2.01838 ms
+[00:19:11.174] [Tick 0] [INFO] Loading bonOdori
+[00:19:11.177] [Tick 0] [INFO] Loaded bonOdori with 14 cues and 5 patterns, took 3.008605 ms
+[00:19:11.178] [Tick 0] [INFO] Loading bouncyRoad
+[00:19:11.181] [Tick 0] [INFO] Loaded bouncyRoad with 3 cues and 2 patterns, took 3.036272 ms
+[00:19:11.182] [Tick 0] [INFO] Loading builtToScaleDS
+[00:19:11.184] [Tick 0] [INFO] Loaded builtToScaleDS with 2 cues and 1 patterns, took 2.289699 ms
+[00:19:11.185] [Tick 0] [INFO] Loading builtToScaleFever
+[00:19:11.187] [Tick 0] [INFO] Loaded builtToScaleFever with 6 cues and 3 patterns, took 2.166981 ms
+[00:19:11.188] [Tick 0] [INFO] Loading bunnyHop
+[00:19:11.190] [Tick 0] [INFO] Loaded bunnyHop with 7 cues and 6 patterns, took 2.264709 ms
+[00:19:11.190] [Tick 0] [INFO] Loading cannery
+[00:19:11.193] [Tick 0] [INFO] Loaded cannery with 2 cues and 1 patterns, took 2.699801 ms
+[00:19:11.193] [Tick 0] [INFO] Loading catchOfTheDay
+[00:19:11.196] [Tick 0] [INFO] Loaded catchOfTheDay with 12 cues and 3 patterns, took 2.913553 ms
+[00:19:11.197] [Tick 0] [INFO] Loading catchyTune
+[00:19:11.199] [Tick 0] [INFO] Loaded catchyTune with 6 cues and 4 patterns, took 2.003207 ms
+[00:19:11.199] [Tick 0] [INFO] Loading cheerReaders
+[00:19:11.203] [Tick 0] [INFO] Loaded cheerReaders with 35 cues and 8 patterns, took 4.239803 ms
+[00:19:11.204] [Tick 0] [INFO] Loading clappyTrioGba
+[00:19:11.206] [Tick 0] [INFO] Loaded clappyTrioGba with 2 cues and 2 patterns, took 2.175906 ms
+[00:19:11.207] [Tick 0] [INFO] Loading clappyTrio
+[00:19:11.209] [Tick 0] [INFO] Loaded clappyTrio with 3 cues and 2 patterns, took 2.324953 ms
+[00:19:11.209] [Tick 0] [INFO] Loading clapTrap
+[00:19:11.216] [Tick 0] [INFO] Loaded clapTrap with 14 cues and 1 patterns, took 6.3394 ms
+[00:19:11.216] [Tick 0] [INFO] Loading coinToss
+[00:19:11.219] [Tick 0] [INFO] Loaded coinToss with 3 cues and 2 patterns, took 2.31335 ms
+[00:19:11.219] [Tick 0] [INFO] Loading cropStomp
+[00:19:11.222] [Tick 0] [INFO] Loaded cropStomp with 8 cues and 3 patterns, took 2.787265 ms
+[00:19:11.223] [Tick 0] [INFO] Loading djSchool
+[00:19:11.225] [Tick 0] [INFO] Loaded djSchool with 13 cues and 3 patterns, took 2.538705 ms
+[00:19:11.226] [Tick 0] [INFO] Loading dogNinja
+[00:19:11.232] [Tick 0] [INFO] Loaded dogNinja with 8 cues and 4 patterns, took 5.97794 ms
+[00:19:11.232] [Tick 0] [INFO] Loading donkDonkEn
+[00:19:11.235] [Tick 0] [INFO] Loaded donkDonkEn with 11 cues and 5 patterns, took 2.61546 ms
+[00:19:11.235] [Tick 0] [INFO] Loading donkDonkJa
+[00:19:11.238] [Tick 0] [INFO] Loaded donkDonkJa with 11 cues and 5 patterns, took 2.741302 ms
+[00:19:11.238] [Tick 0] [INFO] Loading doubleDate
+[00:19:11.241] [Tick 0] [INFO] Loaded doubleDate with 5 cues and 3 patterns, took 2.914892 ms
+[00:19:11.242] [Tick 0] [INFO] Loading drummerDuel
+[00:19:11.245] [Tick 0] [INFO] Loaded drummerDuel with 6 cues and 0 patterns, took 3.713231 ms
+[00:19:11.246] [Tick 0] [INFO] Loading drummingPractice
+[00:19:11.248] [Tick 0] [INFO] Loaded drummingPractice with 2 cues and 1 patterns, took 2.175013 ms
+[00:19:11.249] [Tick 0] [INFO] Loading exhibitionMatch
+[00:19:11.251] [Tick 0] [INFO] Loaded exhibitionMatch with 4 cues and 2 patterns, took 2.318259 ms
+[00:19:11.251] [Tick 0] [INFO] Loading fanClubEn
+[00:19:11.254] [Tick 0] [INFO] Loaded fanClubEn with 14 cues and 3 patterns, took 2.519071 ms
+[00:19:11.254] [Tick 0] [INFO] Loading fanClubJa
+[00:19:11.257] [Tick 0] [INFO] Loaded fanClubJa with 12 cues and 2 patterns, took 2.365561 ms
+[00:19:11.257] [Tick 0] [INFO] Loading figureFighter
+[00:19:11.260] [Tick 0] [INFO] Loaded figureFighter with 18 cues and 5 patterns, took 2.857773 ms
+[00:19:11.261] [Tick 0] [INFO] Loading fillbots
+[00:19:11.264] [Tick 0] [INFO] Loaded fillbots with 15 cues and 3 patterns, took 3.194244 ms
+[00:19:11.264] [Tick 0] [INFO] Loading fireworks
+[00:19:11.267] [Tick 0] [INFO] Loaded fireworks with 9 cues and 3 patterns, took 2.070591 ms
+[00:19:11.267] [Tick 0] [INFO] Loading flipperFlopEn
+[00:19:11.272] [Tick 0] [INFO] GeneratorHelper found for flipperFlopEn, invoking...
+[00:19:11.278] [Tick 0] [INFO] Loaded flipperFlopEn with 43 cues and 17 patterns, took 11.430199 ms
+[00:19:11.279] [Tick 0] [INFO] Loading flockstep
+[00:19:11.281] [Tick 0] [INFO] Loaded flockstep with 11 cues and 2 patterns, took 2.170104 ms
+[00:19:11.282] [Tick 0] [INFO] Loading forkLifter
+[00:19:11.284] [Tick 0] [INFO] Loaded forkLifter with 6 cues and 2 patterns, took 1.864425 ms
+[00:19:11.284] [Tick 0] [INFO] Loading freezeFrame
+[00:19:11.286] [Tick 0] [INFO] Loaded freezeFrame with 7 cues and 4 patterns, took 2.175459 ms
+[00:19:11.287] [Tick 0] [INFO] Loading frogHop
+[00:19:11.291] [Tick 0] [INFO] Loaded frogHop with 18 cues and 6 patterns, took 3.900208 ms
+[00:19:11.291] [Tick 0] [INFO] Loading frogPrincess
+[00:19:11.293] [Tick 0] [INFO] Loaded frogPrincess with 3 cues and 1 patterns, took 1.838989 ms
+[00:19:11.294] [Tick 0] [INFO] Loading fruitBasket
+[00:19:11.296] [Tick 0] [INFO] Loaded fruitBasket with 10 cues and 3 patterns, took 2.542722 ms
+[00:19:11.297] [Tick 0] [INFO] Loading glassTappers
+[00:19:11.299] [Tick 0] [INFO] Loaded glassTappers with 3 cues and 0 patterns, took 1.765803 ms
+[00:19:11.299] [Tick 0] [INFO] Loading gleeClubEn
+[00:19:11.301] [Tick 0] [INFO] Loaded gleeClubEn with 11 cues and 2 patterns, took 2.114769 ms
+[00:19:11.302] [Tick 0] [INFO] Loading gleeClubJa
+[00:19:11.304] [Tick 0] [INFO] Loaded gleeClubJa with 11 cues and 2 patterns, took 2.091564 ms
+[00:19:11.304] [Tick 0] [INFO] Loading headSpinner
+[00:19:11.307] [Tick 0] [INFO] Loaded headSpinner with 12 cues and 2 patterns, took 2.295946 ms
+[00:19:11.307] [Tick 0] [INFO] Loading holeInOne
+[00:19:11.309] [Tick 0] [INFO] Loaded holeInOne with 9 cues and 4 patterns, took 1.445398 ms
+[00:19:11.309] [Tick 0] [INFO] Loading karateMan
+[00:19:11.312] [Tick 0] [INFO] Loaded karateMan with 20 cues and 8 patterns, took 3.161668 ms
+[00:19:11.313] [Tick 0] [INFO] Loading karateManGba
+[00:19:11.315] [Tick 0] [INFO] Loaded karateManGba with 10 cues and 5 patterns, took 2.230348 ms
+[00:19:11.315] [Tick 0] [INFO] Loading karateManDS
+[00:19:11.320] [Tick 0] [INFO] Loaded karateManDS with 10 cues and 4 patterns, took 4.949338 ms
+[00:19:11.321] [Tick 0] [INFO] Loading kitties
+[00:19:11.323] [Tick 0] [INFO] Loaded kitties with 15 cues and 4 patterns, took 2.100044 ms
+[00:19:11.323] [Tick 0] [INFO] Loading launchParty
+[00:19:11.325] [Tick 0] [INFO] Loaded launchParty with 12 cues and 4 patterns, took 1.890307 ms
+[00:19:11.326] [Tick 0] [INFO] Loading lockstep
+[00:19:11.331] [Tick 0] [INFO] Loaded lockstep with 10 cues and 4 patterns, took 4.908283 ms
+[00:19:11.331] [Tick 0] [INFO] Loading loveLab
+[00:19:11.333] [Tick 0] [INFO] Loaded loveLab with 7 cues and 0 patterns, took 1.794809 ms
+[00:19:11.333] [Tick 0] [INFO] Loading loveLizards
+[00:19:11.335] [Tick 0] [INFO] Loaded loveLizards with 6 cues and 1 patterns, took 1.886736 ms
+[00:19:11.336] [Tick 0] [INFO] Loading loveRap
+[00:19:11.341] [Tick 0] [INFO] Loaded loveRap with 66 cues and 6 patterns, took 5.049743 ms
+[00:19:11.341] [Tick 0] [INFO] Loading lumbearjack
+[00:19:11.344] [Tick 0] [INFO] Loaded lumbearjack with 18 cues and 6 patterns, took 2.578422 ms
+[00:19:11.345] [Tick 0] [INFO] Loading manzaiBirds
+[00:19:11.346] [Tick 0] [INFO] GeneratorHelper found for manzaiBirds, invoking...
+[00:19:11.349] [Tick 0] [INFO] Loaded manzaiBirds with 39 cues and 68 patterns, took 4.591446 ms
+[00:19:11.350] [Tick 0] [INFO] Loading marchingOrdersEn
+[00:19:11.352] [Tick 0] [INFO] Loaded marchingOrdersEn with 17 cues and 5 patterns, took 2.192864 ms
+[00:19:11.352] [Tick 0] [INFO] Loading marchingOrdersJa
+[00:19:11.355] [Tick 0] [INFO] Loaded marchingOrdersJa with 30 cues and 7 patterns, took 2.927388 ms
+[00:19:11.356] [Tick 0] [INFO] Loading microRow
+[00:19:11.358] [Tick 0] [INFO] Loaded microRow with 7 cues and 3 patterns, took 2.078177 ms
+[00:19:11.358] [Tick 0] [INFO] Loading moaiDooWop
+[00:19:11.361] [Tick 0] [INFO] Loaded moaiDooWop with 9 cues and 0 patterns, took 3.004142 ms
+[00:19:11.362] [Tick 0] [INFO] Loading monkeyWatch
+[00:19:11.364] [Tick 0] [INFO] Loaded monkeyWatch with 7 cues and 2 patterns, took 2.476677 ms
+[00:19:11.365] [Tick 0] [INFO] Loading mountainManuever
+[00:19:11.367] [Tick 0] [INFO] Loaded mountainManuever with 2 cues and 2 patterns, took 2.51327 ms
+[00:19:11.368] [Tick 0] [INFO] Loading mrUpbeat
+[00:19:11.370] [Tick 0] [INFO] Loaded mrUpbeat with 5 cues and 2 patterns, took 2.074161 ms
+[00:19:11.370] [Tick 0] [INFO] Loading munchyMonkEn
+[00:19:11.372] [Tick 0] [INFO] Loaded munchyMonkEn with 8 cues and 3 patterns, took 1.342761 ms
+[00:19:11.372] [Tick 0] [INFO] Loading munchyMonkEs
+[00:19:11.373] [Tick 0] [INFO] Loaded munchyMonkEs with 8 cues and 3 patterns, took 1.456554 ms
+[00:19:11.374] [Tick 0] [INFO] Loading munchyMonkJa
+[00:19:11.375] [Tick 0] [INFO] Loaded munchyMonkJa with 8 cues and 3 patterns, took 1.354809 ms
+[00:19:11.375] [Tick 0] [INFO] Loading munchyMonkWii
+[00:19:11.377] [Tick 0] [INFO] Loaded munchyMonkWii with 14 cues and 2 patterns, took 1.855946 ms
+[00:19:11.378] [Tick 0] [INFO] Loading ninjaBodyguard
+[00:19:11.380] [Tick 0] [INFO] Loaded ninjaBodyguard with 2 cues and 0 patterns, took 2.096919 ms
+[00:19:11.380] [Tick 0] [INFO] Loading nightWalk
+[00:19:11.382] [Tick 0] [INFO] Loaded nightWalk with 6 cues and 5 patterns, took 1.43558 ms
+[00:19:11.382] [Tick 0] [INFO] Loading nightWalkFever
+[00:19:11.384] [Tick 0] [INFO] Loaded nightWalkFever with 8 cues and 2 patterns, took 1.606046 ms
+[00:19:11.384] [Tick 0] [INFO] Loading octopusMachine
+[00:19:11.386] [Tick 0] [INFO] Loaded octopusMachine with 3 cues and 0 patterns, took 1.698867 ms
+[00:19:11.386] [Tick 0] [INFO] Loading packingPests
+[00:19:11.389] [Tick 0] [INFO] Loaded packingPests with 8 cues and 4 patterns, took 2.372255 ms
+[00:19:11.389] [Tick 0] [INFO] Loading pajamaParty
+[00:19:11.392] [Tick 0] [INFO] Loaded pajamaParty with 21 cues and 4 patterns, took 2.411971 ms
+[00:19:11.392] [Tick 0] [INFO] Loading polyrhythm
+[00:19:11.394] [Tick 0] [INFO] Loaded polyrhythm with 7 cues and 0 patterns, took 2.362883 ms
+[00:19:11.395] [Tick 0] [INFO] Loading powerCalligraphy
+[00:19:11.398] [Tick 0] [INFO] Loaded powerCalligraphy with 13 cues and 7 patterns, took 2.843939 ms
+[00:19:11.398] [Tick 0] [INFO] Loading quizShow
+[00:19:11.400] [Tick 0] [INFO] Loaded quizShow with 10 cues and 0 patterns, took 1.90414 ms
+[00:19:11.401] [Tick 0] [INFO] Loading rapMen
+[00:19:11.404] [Tick 0] [INFO] Loaded rapMen with 60 cues and 15 patterns, took 3.399964 ms
+[00:19:11.405] [Tick 0] [INFO] Loading ratRace
+[00:19:11.406] [Tick 0] [INFO] Loaded ratRace with 6 cues and 4 patterns, took 1.574364 ms
+[00:19:11.407] [Tick 0] [INFO] Loading rhythmoveDungeon
+[00:19:11.408] [Tick 0] [INFO] Loaded rhythmoveDungeon with 7 cues and 4 patterns, took 1.56053 ms
+[00:19:11.408] [Tick 0] [INFO] Loading rhythmRally
+[00:19:11.412] [Tick 0] [INFO] Loaded rhythmRally with 6 cues and 4 patterns, took 3.85603 ms
+[00:19:11.413] [Tick 0] [INFO] Loading rhythmTest
+[00:19:11.415] [Tick 0] [INFO] Loaded rhythmTest with 5 cues and 4 patterns, took 1.915743 ms
+[00:19:11.415] [Tick 0] [INFO] Loading rhythmTweezers
+[00:19:11.417] [Tick 0] [INFO] Loaded rhythmTweezers with 7 cues and 0 patterns, took 1.959029 ms
+[00:19:11.418] [Tick 0] [INFO] Loading ringside
+[00:19:11.421] [Tick 0] [INFO] Loaded ringside with 61 cues and 9 patterns, took 3.676192 ms
+[00:19:11.422] [Tick 0] [INFO] Loading samuraiSliceDS
+[00:19:11.423] [Tick 0] [INFO] Loaded samuraiSliceDS with 5 cues and 3 patterns, took 1.249495 ms
+[00:19:11.423] [Tick 0] [INFO] Loading samuraiSliceGba
+[00:19:11.425] [Tick 0] [INFO] Loaded samuraiSliceGba with 7 cues and 6 patterns, took 1.663167 ms
+[00:19:11.425] [Tick 0] [INFO] Loading samuraiSliceWii
+[00:19:11.429] [Tick 0] [INFO] Loaded samuraiSliceWii with 20 cues and 6 patterns, took 3.340167 ms
+[00:19:11.430] [Tick 0] [INFO] Loading screwbotFactory
+[00:19:11.432] [Tick 0] [INFO] Loaded screwbotFactory with 14 cues and 2 patterns, took 2.249983 ms
+[00:19:11.432] [Tick 0] [INFO] Loading secondContact
+[00:19:11.434] [Tick 0] [INFO] Loaded secondContact with 10 cues and 0 patterns, took 1.823816 ms
+[00:19:11.435] [Tick 0] [INFO] Loading seesawEn
+[00:19:11.437] [Tick 0] [INFO] Loaded seesawEn with 8 cues and 4 patterns, took 2.233918 ms
+[00:19:11.438] [Tick 0] [INFO] Loading seesawJa
+[00:19:11.440] [Tick 0] [INFO] Loaded seesawJa with 8 cues and 4 patterns, took 2.393675 ms
+[00:19:11.440] [Tick 0] [INFO] Loading shootEmUp
+[00:19:11.442] [Tick 0] [INFO] Loaded shootEmUp with 4 cues and 0 patterns, took 1.674769 ms
+[00:19:11.442] [Tick 0] [INFO] Loading showtime
+[00:19:11.448] [Tick 0] [INFO] Loaded showtime with 14 cues and 3 patterns, took 5.562929 ms
+[00:19:11.448] [Tick 0] [INFO] Loading shrimpShuffleEn
+[00:19:11.451] [Tick 0] [INFO] Loaded shrimpShuffleEn with 16 cues and 4 patterns, took 2.648928 ms
+[00:19:11.452] [Tick 0] [INFO] Loading shrimpShuffleJa
+[00:19:11.454] [Tick 0] [INFO] Loaded shrimpShuffleJa with 16 cues and 4 patterns, took 2.421342 ms
+[00:19:11.454] [Tick 0] [INFO] Loading sickBeats
+[00:19:11.456] [Tick 0] [INFO] Loaded sickBeats with 4 cues and 6 patterns, took 1.617649 ms
+[00:19:11.456] [Tick 0] [INFO] Loading sneakySpirits
+[00:19:11.458] [Tick 0] [INFO] Loaded sneakySpirits with 5 cues and 2 patterns, took 1.896108 ms
+[00:19:11.459] [Tick 0] [INFO] Loading spaceDanceEn
+[00:19:11.463] [Tick 0] [INFO] Loaded spaceDanceEn with 14 cues and 10 patterns, took 3.928768 ms
+[00:19:11.463] [Tick 0] [INFO] Loading spaceDanceJa
+[00:19:11.465] [Tick 0] [INFO] Loaded spaceDanceJa with 14 cues and 10 patterns, took 2.174567 ms
+[00:19:11.466] [Tick 0] [INFO] Loading spaceSoccerEn
+[00:19:11.468] [Tick 0] [INFO] Loaded spaceSoccerEn with 11 cues and 3 patterns, took 2.030875 ms
+[00:19:11.468] [Tick 0] [INFO] Loading spaceSoccerEs
+[00:19:11.470] [Tick 0] [INFO] Loaded spaceSoccerEs with 4 cues and 2 patterns, took 1.742598 ms
+[00:19:11.470] [Tick 0] [INFO] Loading spaceSoccerJa
+[00:19:11.472] [Tick 0] [INFO] Loaded spaceSoccerJa with 4 cues and 2 patterns, took 1.809536 ms
+[00:19:11.473] [Tick 0] [INFO] Loading spaceball
+[00:19:11.474] [Tick 0] [INFO] Loaded spaceball with 4 cues and 2 patterns, took 1.785884 ms
+[00:19:11.475] [Tick 0] [INFO] Loading splashdownEn
+[00:19:11.478] [Tick 0] [INFO] Loaded splashdownEn with 15 cues and 6 patterns, took 2.923818 ms
+[00:19:11.478] [Tick 0] [INFO] Loading splashdownEs
+[00:19:11.481] [Tick 0] [INFO] Loaded splashdownEs with 15 cues and 6 patterns, took 2.69043 ms
+[00:19:11.481] [Tick 0] [INFO] Loading sumoBrothers
+[00:19:11.483] [Tick 0] [INFO] Loaded sumoBrothers with 7 cues and 5 patterns, took 1.809983 ms
+[00:19:11.484] [Tick 0] [INFO] Loading superSamuraiSlice
+[00:19:11.486] [Tick 0] [INFO] Loaded superSamuraiSlice with 10 cues and 5 patterns, took 2.175459 ms
+[00:19:11.486] [Tick 0] [INFO] Loading tambourine
+[00:19:11.488] [Tick 0] [INFO] Loaded tambourine with 6 cues and 0 patterns, took 2.062113 ms
+[00:19:11.489] [Tick 0] [INFO] Loading tangotronic3000
+[00:19:11.491] [Tick 0] [INFO] Loaded tangotronic3000 with 13 cues and 3 patterns, took 2.30621 ms
+[00:19:11.491] [Tick 0] [INFO] Loading tapTrial
+[00:19:11.494] [Tick 0] [INFO] Loaded tapTrial with 10 cues and 5 patterns, took 2.591809 ms
+[00:19:11.495] [Tick 0] [INFO] Loading tapTrialRemix7
+[00:19:11.497] [Tick 0] [INFO] Loaded tapTrialRemix7 with 10 cues and 5 patterns, took 2.026859 ms
+[00:19:11.497] [Tick 0] [INFO] Loading tapTroupeEn
+[00:19:11.500] [Tick 0] [INFO] Loaded tapTroupeEn with 17 cues and 7 patterns, took 2.911323 ms
+[00:19:11.500] [Tick 0] [INFO] Loading tapTroupeJa
+[00:19:11.503] [Tick 0] [INFO] Loaded tapTroupeJa with 17 cues and 7 patterns, took 2.299962 ms
+[00:19:11.503] [Tick 0] [INFO] Loading theDazzles
+[00:19:11.505] [Tick 0] [INFO] Loaded theDazzles with 7 cues and 6 patterns, took 2.056758 ms
+[00:19:11.506] [Tick 0] [INFO] Loading tongueLashing
+[00:19:11.509] [Tick 0] [INFO] Loaded tongueLashing with 6 cues and 4 patterns, took 3.319193 ms
+[00:19:11.510] [Tick 0] [INFO] Loading tossBoys
+[00:19:11.513] [Tick 0] [INFO] Loaded tossBoys with 44 cues and 13 patterns, took 2.876962 ms
+[00:19:11.513] [Tick 0] [INFO] Loading tramAndPauline
+[00:19:11.515] [Tick 0] [INFO] Loaded tramAndPauline with 4 cues and 2 patterns, took 2.335663 ms
+[00:19:11.516] [Tick 0] [INFO] Loading wizardWaltz
+[00:19:11.518] [Tick 0] [INFO] Loaded wizardWaltz with 2 cues and 0 patterns, took 1.746169 ms
+[00:19:11.518] [Tick 0] [INFO] Loading workingDough
+[00:19:11.520] [Tick 0] [INFO] Loaded workingDough with 4 cues and 0 patterns, took 1.965723 ms
+[00:19:11.653] [Tick 0] [INFO] Loaded 127 games (127 databased, 0 custom game(s)) with 0 warning(s), done in 564.574329 ms
+[00:19:11.776] [Tick 0] [WARN] Version URL is null!
+[00:19:12.677] [Tick 106] [INFO] Finished loading all managed assets, took 903 ms
+[00:19:21.212] [Tick 219] [INFO] Found 0 palette files
+resizing: (1280, 720, false)
+[00:19:53.626] [Tick 924] [INFO] Starting sweep-load with 7 IDs and 1 coroutines
+[00:19:53.927] [Tick 931] [INFO] Finished sweep-load in 325.598664 ms

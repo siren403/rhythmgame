@@ -29,18 +29,10 @@ public class CSequenceData
             return _Input;
         }
     }
+
     [SerializeField]
-    private int _SoundCode;
-    public int SoundCode
-    {
-        get
-        {
-            return _SoundCode;
-        }
-    }
-    [SerializeField]
-    private int _ActionCode;
-    public int ActionCode
+    private string _ActionCode = string.Empty;
+    public string ActionCode
     {
         get
         {
@@ -52,15 +44,11 @@ public class CSequenceData
     {
         _Beat = tBeat;
         _Time = tTime;
-        _ActionCode = -1;
-        _SoundCode = -1;
         _Input = InputCode.None;
     }
     public CSequenceData(float tBeat)
     {
         _Beat = tBeat;
-        _ActionCode = -1;
-        _SoundCode = -1;
         _Input = InputCode.None;
     }
     public void SetTime(float tTime)

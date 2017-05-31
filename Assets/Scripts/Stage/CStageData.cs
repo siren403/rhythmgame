@@ -20,6 +20,7 @@ public class CStageData : ScriptableObject
     public float StartBeatOffset;
 
     public AudioClip Music = null;
-    public List<AudioClip> SoundEffects = new List<AudioClip>(); 
     public List<CSequenceData> SequenceList = new List<CSequenceData>();
+
+    public List<string> ActionCodeList = new List<string>() { "None" };
 }

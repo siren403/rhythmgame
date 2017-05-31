@@ -20,6 +20,8 @@ public abstract class CThemeBase : PresenterBase, ISequenceReceiver
         }
     }
 
+    public abstract void OnBaseBeat(CSequencePlayer tSeqPlayer, CSequenceData tData);
+
     public abstract void OnEveryBeat(CSequencePlayer tSeqPlayer, CSequenceData tData);
 
     public abstract void OnInputResult(CSequencePlayer tSeqPlayer, InputResult tResult);

@@ -14,6 +14,7 @@ public class CSequencePlayer : PresenterBase
     private class CEmptySequenceReceiver : ISequenceReceiver
     {
         public void OnEveryBeat(CSequencePlayer tSeqPlayer, CSequenceData tData) { }
+        public void OnBaseBeat(CSequencePlayer tSeqPlayer, CSequenceData tData) { }
         public void OnInputResult(CSequencePlayer tSeqPlayer, InputResult tResult) { }
     }
     private static ISequenceReceiver EmptyReceiver = new CEmptySequenceReceiver();
@@ -183,11 +184,12 @@ public class CSequencePlayer : PresenterBase
             if (mSequenceIndex != mAlreadySequenceIndex && SequenceList[mSequenceIndex].Time - CurrentTrackTime <= 0.0001f)
             {
                 mCurrentReceiver.OnEveryBeat(this, SequenceList[mSequenceIndex]);
-                int tSoundCode = SequenceList[mSequenceIndex].SoundCode;
-                if (tSoundCode != -1)
+
+                if(SequenceList[mSequenceIndex].Beat == Mathf.Round(mBeatProgress))
                 {
-                    mAudioSource.PlayOneShot(mCurrentStageData.SoundEffects[tSoundCode]);
+                    mCurrentReceiver.OnBaseBeat(this, SequenceList[mSequenceIndex]);
                 }
+
                 mAlreadySequenceIndex = mSequenceIndex;
             }
 

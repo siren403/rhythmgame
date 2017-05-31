@@ -15,7 +15,16 @@ public class CHoleInOne : CThemeBase
         }
     }
 
-    public AudioClip SoundEffects = new AudioClip();
+    public enum ActionType
+    {
+        None,
+        SEMonkey, SEMandril, SEMonkeyShort,
+        ThrowBall,
+    }
+
+    public AudioClip SEMonkey = null;
+    public AudioClip SEMandril = null;
+    public AudioClip SEMonkeyShort = null;
 
     public Renderer BeatPanel = null;
     public Renderer CheckTimingPanel = null;
@@ -25,21 +34,34 @@ public class CHoleInOne : CThemeBase
     public Transform BallPerpectPoint = null;
     private GameObject CurrentBall = null;
 
+    private Dictionary<string, Action<CSequencePlayer, CSequenceData>> mActionList 
+        = new Dictionary<string, Action<CSequencePlayer, CSequenceData>>();
+
     protected override void BeforeInitialize()
     {
+        mActionList[CHoleInOneActionCode.SEMONKEY] = (tSeqPlayer, tSeqData) => mAudioSource.PlayOneShot(SEMonkey);
+        mActionList[CHoleInOneActionCode.SEMANDRIL] = (tSeqPlayer, tSeqData) => mAudioSource.PlayOneShot(SEMandril);
+        mActionList[CHoleInOneActionCode.SEMONKEYSHORT] = (tSeqPlayer, tSeqData) => mAudioSource.PlayOneShot(SEMonkeyShort);
+
+        mActionList[CHoleInOneActionCode.THROWBALL] = ThrowBall;
     }
 
     protected override void Initialize()
     {
-    }
 
+    }
     public override void OnEveryBeat(CSequencePlayer tSeqPlayer, CSequenceData tData)
+    {
+        if (mActionList.ContainsKey(tData.ActionCode))
+        {
+            mActionList[tData.ActionCode].Invoke(tSeqPlayer, tData);
+        }
+    }
+    public override void OnBaseBeat(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
         BeatPanel.material.DOColor(Color.white, tSeqPlayer.BPS * 0.5f).From();
 
-        PlayAction(tSeqPlayer, tData.ActionCode);
     }
-
     public override void OnInputResult(CSequencePlayer tSeqPlayer, InputResult tResult)
     {
         switch (tResult)
@@ -57,22 +79,21 @@ public class CHoleInOne : CThemeBase
                 break;
         }
     }
-    
-    private void PlayAction(CSequencePlayer tSeqPlayer,int tCode)
-    {
-        switch(tCode)
-        {
-            case 0:
-                if (CurrentBall == null)
-                {
-                    CurrentBall = Instantiate(PFBall, BallStartPoint.position, Quaternion.identity);
-                }
 
-                CurrentBall.transform.position = BallStartPoint.position;
-                CurrentBall.SetActive(true);
-                CurrentBall.transform.DOJump(BallEndPoint.position, 2, 1, tSeqPlayer.BPS)
-                    .SetEase(Ease.Linear);
-                break;
+
+    private void ThrowBall(CSequencePlayer tSeqPlayer, CSequenceData tData)
+    {
+        if (CurrentBall == null)
+        {
+            CurrentBall = Instantiate(PFBall, BallStartPoint.position, Quaternion.identity);
+            CurrentBall.transform.SetParent(this.transform);
         }
+
+        CurrentBall.transform.position = BallStartPoint.position;
+        CurrentBall.SetActive(true);
+        CurrentBall.transform.DOJump(BallEndPoint.position, 2, 1, tSeqPlayer.BPS)
+            .SetEase(Ease.Linear);
     }
+    
+    
 }

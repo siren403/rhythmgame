@@ -5,6 +5,7 @@ using UnityEngine;
 public interface ISequenceReceiver
 {
     void OnEveryBeat(CSequencePlayer tSeqPlayer ,CSequenceData tData);
+    void OnBaseBeat(CSequencePlayer tSeqPlayer, CSequenceData tData);
     void OnInputResult(CSequencePlayer tSeqPlayer, InputResult tResult);
     
 }

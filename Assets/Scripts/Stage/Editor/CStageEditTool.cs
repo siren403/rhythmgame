@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 using System.Linq;
+using System.Text;
+using System.IO;
 
 public class CStageEditTool : EditorWindow
 {
@@ -19,6 +21,8 @@ public class CStageEditTool : EditorWindow
 
     private string mCreateDataName = string.Empty;
     private float mAddSeqBeat = 0.0f;
+    private string mAddActionCode = string.Empty;
+    private int mSelectedActionCodeIndex = 0;
 
     private CStageData mEditData = null;
 
@@ -27,8 +31,6 @@ public class CStageEditTool : EditorWindow
     //SequenceList 
     private ReorderableList mSeqReorderableList = null;
     private Vector2 mReorderScrollViewPos = Vector2.zero;
-    //SoundEffects
-    private ReorderableList mSEReorderableList = null;
 
 
     public enum SequenceEditTap
@@ -48,7 +50,7 @@ public class CStageEditTool : EditorWindow
         {
             mStageDataSO = new SerializedObject(mEditData);
             mSeqReorderableList = new ReorderableList(mStageDataSO, mStageDataSO.FindProperty("SequenceList"),
-                false, true, false, false);
+                true, true, false, false);
 
             mSeqReorderableList.drawHeaderCallback = (rect) => EditorGUI.LabelField(rect, "Sequence Items");
             mSeqReorderableList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
@@ -56,7 +58,32 @@ public class CStageEditTool : EditorWindow
                 rect.y += 2;
                 rect.height = EditorGUIUtility.singleLineHeight;
                 var tElement = mSeqReorderableList.serializedProperty.GetArrayElementAtIndex(index);
-                EditorGUI.PropertyField(rect, tElement, tElement.isExpanded);
+
+                //EditorGUI.PropertyField(rect, tElement, tElement.isExpanded);
+                EditorGUI.PropertyField(rect, tElement, false);
+
+                if (tElement.isExpanded)
+                {
+                    float tSingle = EditorGUIUtility.singleLineHeight;
+                    rect.x += 20;
+                    rect.y += tSingle * 1.3f;
+                    rect.width -= 25;
+                    EditorGUI.PropertyField(rect, tElement.FindPropertyRelative("_Beat"));
+                    rect.y += tSingle;
+                    EditorGUI.PropertyField(rect, tElement.FindPropertyRelative("_Input"));
+                    rect.y += tSingle;
+
+                    string tActionCode = tElement.FindPropertyRelative("_ActionCode").stringValue;
+                    int tActionCodeIndex = mEditData.ActionCodeList.IndexOf(tActionCode);
+                    if (tActionCodeIndex == -1)
+                        tActionCodeIndex = 0;
+
+                    tElement.FindPropertyRelative("_ActionCode").stringValue
+                        = mEditData.ActionCodeList[EditorGUI.Popup(rect, "ActionCode",
+                        tActionCodeIndex,
+                        mEditData.ActionCodeList.ToArray())];
+                }
+
                 //if (index == mReorderableList.index)
                 //{
                 //    mReorderableList.elementHeight = EditorGUI.GetPropertyHeight(tElement, GUIContent.none, tElement.isExpanded);
@@ -65,22 +92,6 @@ public class CStageEditTool : EditorWindow
             mSeqReorderableList.elementHeightCallback = (int index) =>
             {
                 SerializedProperty arrayElement = mSeqReorderableList.serializedProperty.GetArrayElementAtIndex(index);
-                return EditorGUI.GetPropertyHeight(arrayElement, GUIContent.none, arrayElement.isExpanded) + 3;
-            };
-
-            mSEReorderableList = new ReorderableList(mStageDataSO, mStageDataSO.FindProperty("SoundEffects"),
-                true, true, true, true);
-            mSEReorderableList.drawHeaderCallback = (rect) => EditorGUI.LabelField(rect, "SoundEffects");
-            mSEReorderableList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
-            {
-                rect.y += 2;
-                rect.height = EditorGUIUtility.singleLineHeight;
-                var tElement = mSEReorderableList.serializedProperty.GetArrayElementAtIndex(index);
-                EditorGUI.PropertyField(rect, tElement, tElement.isExpanded);
-            };
-            mSEReorderableList.elementHeightCallback = (int index) =>
-            {
-                SerializedProperty arrayElement = mSEReorderableList.serializedProperty.GetArrayElementAtIndex(index);
                 return EditorGUI.GetPropertyHeight(arrayElement, GUIContent.none, arrayElement.isExpanded) + 3;
             };
 
@@ -117,7 +128,6 @@ public class CStageEditTool : EditorWindow
         mEditData.Music = CCustomField.ObjectField<AudioClip>("Music : ", mEditData.Music, tFieldWidth: 200);
         GUILayout.EndHorizontal();
 
-        mSEReorderableList.DoLayoutList();
 
         GUILayout.BeginHorizontal();
         GUI.enabled = !(mCurrentTap == SequenceEditTap.Edit);
@@ -182,6 +192,27 @@ public class CStageEditTool : EditorWindow
         {
             mEditData.SequenceList.RemoveAt(mEditData.SequenceList.Count - 1);
         }
+
+        GUILayout.Space(8);
+        GUILayout.Label("ActionCode : ", GUILayout.Width(80));
+        mSelectedActionCodeIndex = EditorGUILayout.Popup(mSelectedActionCodeIndex, mEditData.ActionCodeList.ToArray(), GUILayout.Width(100));
+        mAddActionCode = GUILayout.TextField(mAddActionCode, GUILayout.Width(100));
+        if(GUILayout.Button("Add", GUILayout.Width(60)))
+        {
+            if(mEditData.ActionCodeList.Contains(mAddActionCode) == false)
+            {
+                mEditData.ActionCodeList.Add(mAddActionCode);
+                mAddActionCode = string.Empty;
+            }
+        }
+        if (GUILayout.Button("Remove", GUILayout.Width(60)))
+        {
+            mEditData.ActionCodeList.RemoveAt(mSelectedActionCodeIndex);
+        }
+        if (GUILayout.Button("Generate", GUILayout.Width(75)))
+        {
+            StringArrayToClass.Generate(mEditData.ActionCodeList.ToArray(), "C"+mEditData.StageName + "ActionCode", "Assets/Scripts/Stage/ActionCode");
+        }
         EditorGUILayout.EndHorizontal();
 
         Rect tReorderRect = new Rect(0, EditorGUIUtility.singleLineHeight * 5, this.minSize.x - 30, this.minSize.y);
@@ -193,7 +224,7 @@ public class CStageEditTool : EditorWindow
     }
 }
 
-public class CCustomField
+public static class CCustomField
 {
     public static int IntField(string tTitle,ref int tValue,float tLabelWidth = 50,float tFieldWidth = 50)
     {
@@ -209,5 +240,88 @@ public class CCustomField
     {
         EditorGUILayout.LabelField(tTitle, GUILayout.Width(tLabelWidth));
         return EditorGUILayout.ObjectField(tValue, typeof(T),false,GUILayout.Width(tFieldWidth)) as T;
+    }
+}
+
+public static class StringArrayToClass
+{
+    public static void Generate(string[] array, string name, string path, string nameSpace = null, string tag = null)
+    {
+        if (array == null || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(path))
+            return;
+
+        bool isNameSpace = !string.IsNullOrEmpty(nameSpace);
+
+        StringBuilder enumString = new StringBuilder();
+
+        if (isNameSpace)
+        {
+            enumString.Append("\t");
+        }
+
+        enumString.AppendFormat("public static class {0}\n", name);
+
+        if (isNameSpace)
+        {
+            enumString.Append("\t");
+        }
+
+        enumString.Append("{");
+
+        foreach (var str in array)
+        {
+            enumString.Append("\n\t");
+
+            if (isNameSpace)
+            {
+                enumString.Append("\t");
+            }
+
+            if (string.IsNullOrEmpty(tag) == false)
+                enumString.AppendFormat("{0}_", tag);
+
+            //enumString.AppendFormat("{0},", str);
+            enumString.AppendFormat("public const string {0} = \"{1}\";", str.ToUpper(), str);
+
+        }
+
+        enumString.AppendLine();
+
+        if (isNameSpace)
+        {
+            enumString.Append("\t");
+        }
+
+        enumString.Append("}");
+
+        string result = enumString.ToString();
+        enumString.Remove(0, enumString.Length);
+        //Debug.Log(result);
+
+        if (isNameSpace)
+        {
+            result = enumString
+                .AppendFormat("namespace {0}\n", nameSpace)
+                .Append("{")
+                .AppendLine()
+                .AppendFormat("{0}", result)
+                .AppendLine()
+                .Append("}")
+                .ToString();
+        }
+
+
+        path = string.Format("{0}/{1}/{2}.cs",
+            System.Environment.CurrentDirectory.Replace('\\', '/'),
+            path,
+            name);
+
+        //Debug.Log(result);
+        //Debug.Log(path);
+        using (StreamWriter sw = new StreamWriter(path))
+        {
+            sw.Write(result);
+        }
+        AssetDatabase.Refresh();
     }
 }

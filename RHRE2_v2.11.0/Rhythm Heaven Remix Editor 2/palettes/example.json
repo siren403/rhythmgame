@@ -1,0 +1,16 @@
+{
+  "editorBg": "#EBEBEB",
+  "staffLine": "#191919",
+  "soundCue": "#D8D8D8",
+  "stretchableSoundCue": "#FFD8D8",
+  "patternCue": "#D8D8FF",
+  "stretchablePatternCue": "#FFD8FF",
+  "selectionCueTint": "#00BFBF",
+  "selectionBg": "#19BFBF",
+  "selectionBorder": "#19D8D8",
+  "beatTracker": "#00E500",
+  "bpmTracker": "#6666E5",
+  "bpmTrackerSelected": "#E5E5FF",
+  "musicStartTracker": "#E50000",
+  "cueText": "#000000"
+}
