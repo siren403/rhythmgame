@@ -5,7 +5,7 @@ using UniRx;
 using System;
 
 [RequireComponent(typeof(AudioSource))]
-public abstract class CThemeBase : PresenterBase
+public abstract class CThemeBase : PresenterBase, ISequenceReceiver
 {
     private AudioSource mCachedAudioSource = null;
     protected AudioSource mAudioSource
@@ -19,4 +19,8 @@ public abstract class CThemeBase : PresenterBase
             return mCachedAudioSource;
         }
     }
+
+    public abstract void OnEveryBeat(CSequencePlayer tSeqPlayer, CSequenceData tData);
+
+    public abstract void OnInputResult(CSequencePlayer tSeqPlayer, InputResult tResult);
 }

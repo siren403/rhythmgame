@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CStageData : ScriptableObject
 {
+    public string StageName;
     public int BPM;
     public float BPS
     {
@@ -16,7 +17,9 @@ public class CStageData : ScriptableObject
             return 60.0f / (float)BPM;
         }
     }
-
     public float StartBeatOffset;
+
+    public AudioClip Music = null;
+    public List<AudioClip> SoundEffects = new List<AudioClip>(); 
     public List<CSequenceData> SequenceList = new List<CSequenceData>();
 }

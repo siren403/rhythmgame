@@ -183,6 +183,11 @@ public class CSequencePlayer : PresenterBase
             if (mSequenceIndex != mAlreadySequenceIndex && SequenceList[mSequenceIndex].Time - CurrentTrackTime <= 0.0001f)
             {
                 mCurrentReceiver.OnEveryBeat(this, SequenceList[mSequenceIndex]);
+                int tSoundCode = SequenceList[mSequenceIndex].SoundCode;
+                if (tSoundCode != -1)
+                {
+                    mAudioSource.PlayOneShot(mCurrentStageData.SoundEffects[tSoundCode]);
+                }
                 mAlreadySequenceIndex = mSequenceIndex;
             }
 
