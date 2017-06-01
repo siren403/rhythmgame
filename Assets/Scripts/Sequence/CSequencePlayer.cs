@@ -18,6 +18,48 @@ public class CSequencePlayer : PresenterBase
         public void OnInputResult(CSequencePlayer tSeqPlayer, InputResult tResult) { }
     }
     private static ISequenceReceiver EmptyReceiver = new CEmptySequenceReceiver();
+    public class EvaluationData
+    {
+        public int mTotalCount { private set; get; } 
+        public int mFastCount { private set; get; }
+        public int mPerfectCount { private set; get; }
+        public int mLateCount { private set; get; }
+
+        public float EvaluateValue
+        {
+            get
+            {
+                if(mTotalCount == 0)
+                {
+                    return 0;
+                }
+                return (float)mPerfectCount / mTotalCount;
+            }
+        }
+
+        public void AddTotalCount()
+        {
+            mTotalCount++;
+        }
+
+        public void OnCount(InputResult tResult)
+        {
+            switch (tResult)
+            {
+                case InputResult.Fast:
+                    mFastCount++;
+                    break;
+                case InputResult.Perfect:
+                    mPerfectCount++;
+                    break;
+                case InputResult.Late:
+                    mLateCount++;
+                    break;
+            }
+        }
+
+    }
+
 
     public float BPS
     {
@@ -91,7 +133,6 @@ public class CSequencePlayer : PresenterBase
     }
 
     public CSequenceData CurrentSequenceData = null;
-    public List<CSequenceData> InsertSequenceList = new List<CSequenceData>();
     public List<CSequenceData> SequenceList = new List<CSequenceData>();
    
     private int mSequenceIndex = 0;
@@ -100,6 +141,9 @@ public class CSequencePlayer : PresenterBase
 
     private ISequenceReceiver mCurrentReceiver = EmptyReceiver;
     private CStageData mCurrentStageData = null;
+
+    private EvaluationData mCurrentEvaluation = new EvaluationData();
+
 
     public void SetReceiver(ISequenceReceiver tReceiver)
     {
@@ -122,6 +166,7 @@ public class CSequencePlayer : PresenterBase
         mAudioSource = GetComponent<AudioSource>();
         Debug.Log("BPS : " + BPS);
         Queue<CSequenceData> tInsertSeqData = new Queue<CSequenceData>(mCurrentStageData.SequenceList);
+
         for (int tBeat = 0; tBeat < mAudioSource.clip.length / BPS;)
         {
             CSequenceData tSeqData = null;
@@ -149,9 +194,14 @@ public class CSequencePlayer : PresenterBase
                 tSeqData = new CSequenceData(tBeat, tBeat * BPS);
                 tBeat++;
             }
+
+            if(tSeqData.Input != InputCode.None)
+            {
+                mCurrentEvaluation.AddTotalCount();
+            }
             SequenceList.Add(tSeqData);
         }
-        Debug.Log("ActionInfo Count : " + SequenceList.Count);
+        Debug.Log("Sequence Count : " + SequenceList.Count+"\nInput Count : "+mCurrentEvaluation.mTotalCount);
     }
 
     protected override void Initialize()
@@ -229,7 +279,6 @@ public class CSequencePlayer : PresenterBase
         }
     }
 
-    
 
     /// <summary>
     /// 입력에 따른 판정을 실시한다
@@ -271,8 +320,8 @@ public class CSequencePlayer : PresenterBase
                 mBeatProgress,
                 tRoundProgress + mCurrentStageData.PerfectRange));
         }
-      
 
+        mCurrentEvaluation.OnCount(tResult);
         return tResult;
     }
 
@@ -282,7 +331,9 @@ public class CSequencePlayer : PresenterBase
     public void Stop()
     {
         mIsPlaying = false;
+        mAudioSource.Stop();
         mCurrentTime = 0;
+
     }
 
     public void Seek(float tBeat)
@@ -298,6 +349,15 @@ public class CSequencePlayer : PresenterBase
         mAudioSource.time = SequenceList[mSequenceIndex].Beat * BPS;
     }
 
+
+
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(Screen.width*0.05f ,Screen.height * 0.9f,Screen.width,Screen.height * 0.1f),
+            string.Format("[{0}] Fast : {1} Perfect : {2} Late : {3}",
+            mCurrentEvaluation.EvaluateValue,
+            mCurrentEvaluation.mFastCount, mCurrentEvaluation.mPerfectCount, mCurrentEvaluation.mLateCount));
+    }
 
     /**
     * @brief

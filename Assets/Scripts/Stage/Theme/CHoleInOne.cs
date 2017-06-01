@@ -32,7 +32,20 @@ public class CHoleInOne : CThemeBase
     public Transform BallStartPoint = null;
     public Transform BallEndPoint = null;
     public Transform BallPerpectPoint = null;
-    private GameObject CurrentBall = null;
+    private GameObject _CurrentBall = null;
+    private GameObject CurrentBall
+    {
+        get
+        {
+            if (_CurrentBall == null)
+            {
+                _CurrentBall = Instantiate(PFBall, BallStartPoint.position, Quaternion.identity);
+                _CurrentBall.transform.SetParent(this.transform);
+            }
+            return _CurrentBall;
+        }
+    }
+
 
     private Dictionary<string, Action<CSequencePlayer, CSequenceData>> mActionList 
         = new Dictionary<string, Action<CSequencePlayer, CSequenceData>>();
@@ -85,12 +98,6 @@ public class CHoleInOne : CThemeBase
 
     private void ThrowBall(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
-        if (CurrentBall == null)
-        {
-            CurrentBall = Instantiate(PFBall, BallStartPoint.position, Quaternion.identity);
-            CurrentBall.transform.SetParent(this.transform);
-        }
-
         CurrentBall.transform.position = BallStartPoint.position;
         CurrentBall.SetActive(true);
         CurrentBall.transform.DOJump(BallEndPoint.position, 2, 1, tSeqPlayer.BPS)
@@ -107,11 +114,6 @@ public class CHoleInOne : CThemeBase
     private void MonkeyShort(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
         mAudioSource.PlayOneShot(SEMonkeyShort);
-        if (CurrentBall == null)
-        {
-            CurrentBall = Instantiate(PFBall, BallStartPoint.position, Quaternion.identity);
-            CurrentBall.transform.SetParent(this.transform);
-        }
         DOTween.Kill(CurrentBall.transform);
         CurrentBall.transform.position = BallStartPoint.position;
         CurrentBall.SetActive(true);

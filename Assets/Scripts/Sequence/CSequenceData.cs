@@ -11,6 +11,10 @@ public class CSequenceData
         {
             return _Beat;
         }
+        set
+        {
+            _Beat = value;
+        }
     }
     private float _Time;
     public float Time
@@ -28,6 +32,10 @@ public class CSequenceData
         {
             return _Input;
         }
+        set
+        {
+            _Input = value;
+        }
     }
 
     [SerializeField]
@@ -37,6 +45,10 @@ public class CSequenceData
         get
         {
             return _ActionCode;
+        }
+        set
+        {
+            _ActionCode = value;
         }
     }
 

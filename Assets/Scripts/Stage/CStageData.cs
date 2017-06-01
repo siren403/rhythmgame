@@ -20,6 +20,10 @@ public class CStageData : ScriptableObject
     public float StartBeatOffset;
     public float PerfectRange = 0.1f;
 
+    public float EvaluationLowRatio = 0.3f;
+    public float EvaluationMiddleRatio = 0.4f;
+    public float EvaluationHighRatio = 0.3f;
+
     public AudioClip Music = null;
     public List<CSequenceData> SequenceList = new List<CSequenceData>();
 

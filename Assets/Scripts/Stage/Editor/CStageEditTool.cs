@@ -25,14 +25,11 @@ public class CStageEditTool : EditorWindow
     private int mSelectedActionCodeIndex = 0;
     private int mCopySeqStartIndex = 0;
     private int mCopySeqEndIndex = 0;
+    private List<bool> mSeqIsExpanded = new List<bool>();
 
     private CStageData mEditData = null;
 
-    private SerializedObject mStageDataSO = null;
-    private SerializedObject mToolDataSO = null;
-    //SequenceList 
-    private ReorderableList mSeqReorderableList = null;
-    private Vector2 mReorderScrollViewPos = Vector2.zero;
+    private Vector2 mSequenceScrollViewPos = Vector2.zero;
 
 
     public enum SequenceEditTap
@@ -43,67 +40,8 @@ public class CStageEditTool : EditorWindow
 
     private void OnEnable()
     {
-        RefrashSequenceList();
     }
 
-    private void RefrashSequenceList()
-    {
-        if (mEditData != null)
-        {
-            mStageDataSO = new SerializedObject(mEditData);
-            mSeqReorderableList = new ReorderableList(mStageDataSO, mStageDataSO.FindProperty("SequenceList"),
-                true, true, false, false);
-
-            mSeqReorderableList.drawHeaderCallback = (rect) => EditorGUI.LabelField(rect, "Sequence Items");
-            mSeqReorderableList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
-            {
-
-                rect.y += 2;
-                rect.height = EditorGUIUtility.singleLineHeight;
-                var tElement = mSeqReorderableList.serializedProperty.GetArrayElementAtIndex(index);
-
-                //EditorGUI.PropertyField(rect, tElement, tElement.isExpanded);
-                EditorGUI.PropertyField(rect, tElement, false);
-
-                if (tElement.isExpanded)
-                {
-                    float tSingle = EditorGUIUtility.singleLineHeight;
-                    rect.x += 20;
-                    rect.y += tSingle * 1.3f;
-                    rect.width -= 25;
-                    EditorGUI.PropertyField(rect, tElement.FindPropertyRelative("_Beat"));
-                    rect.y += tSingle;
-                    EditorGUI.PropertyField(rect, tElement.FindPropertyRelative("_Input"));
-                    rect.y += tSingle;
-
-                    string tActionCode = tElement.FindPropertyRelative("_ActionCode").stringValue;
-                    int tActionCodeIndex = mEditData.ActionCodeList.IndexOf(tActionCode);
-                    if (tActionCodeIndex == -1)
-                        tActionCodeIndex = 0;
-
-                    tElement.FindPropertyRelative("_ActionCode").stringValue
-                        = mEditData.ActionCodeList[EditorGUI.Popup(rect, "ActionCode",
-                        tActionCodeIndex,
-                        mEditData.ActionCodeList.ToArray())];
-                }
-
-                
-                //if (index == mReorderableList.index)
-                //{
-                //    mReorderableList.elementHeight = EditorGUI.GetPropertyHeight(tElement, GUIContent.none, tElement.isExpanded);
-                //}
-            };
-            mSeqReorderableList.elementHeightCallback = (int index) =>
-            {
-
-                SerializedProperty arrayElement = mSeqReorderableList.serializedProperty.GetArrayElementAtIndex(index);
-                return EditorGUI.GetPropertyHeight(arrayElement, GUIContent.none, arrayElement.isExpanded) + 3;
-            };
-
-
-            Repaint();
-        }
-    }
 
     private void OnGUI()
     {
@@ -112,10 +50,9 @@ public class CStageEditTool : EditorWindow
 
         GUILayout.Space(10);
 
-        if (mEditData == null || mStageDataSO == null)
+        if (mEditData == null)
             return;
 
-        mStageDataSO.Update();
 
         GUILayout.BeginHorizontal();
         mEditData.BPM = CCustomField.IntField("BPM : ", mEditData.BPM);
@@ -133,6 +70,22 @@ public class CStageEditTool : EditorWindow
         //Audio Resources
         GUILayout.BeginHorizontal();
         mEditData.Music = CCustomField.ObjectField<AudioClip>("Music : ", mEditData.Music, tFieldWidth: 200);
+        GUILayout.EndHorizontal();
+
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Evaluation [Low][Mid][High] : ", GUILayout.Width(180));
+
+        mEditData.EvaluationLowRatio = EditorGUILayout.FloatField(mEditData.EvaluationLowRatio,GUILayout.Width(50));
+        GUILayout.Box(mEditData.EvaluationMiddleRatio.ToString(), GUILayout.Width(50));
+        mEditData.EvaluationHighRatio = EditorGUILayout.FloatField(mEditData.EvaluationHighRatio, GUILayout.Width(50));
+
+        int tRoundPosition = 100;
+        float tHighValue = 1 - mEditData.EvaluationHighRatio;
+        EditorGUILayout.MinMaxSlider(ref mEditData.EvaluationLowRatio, ref tHighValue, 0, 1);
+        mEditData.EvaluationLowRatio = Mathf.Round(mEditData.EvaluationLowRatio * tRoundPosition) / tRoundPosition;
+        mEditData.EvaluationHighRatio = Mathf.Round((1 - tHighValue) * tRoundPosition) / tRoundPosition;
+        mEditData.EvaluationMiddleRatio = Mathf.Round((tHighValue - mEditData.EvaluationLowRatio) * tRoundPosition) / tRoundPosition;
         GUILayout.EndHorizontal();
 
 
@@ -178,7 +131,6 @@ public class CStageEditTool : EditorWindow
         mEditData = EditorGUILayout.ObjectField(mEditData, typeof(CStageData), false) as CStageData;
         if (GUILayout.Button("Refrash", GUILayout.Width(80)))
         {
-            RefrashSequenceList();
         }
         GUILayout.EndHorizontal();
     }
@@ -244,12 +196,48 @@ public class CStageEditTool : EditorWindow
         EditorGUILayout.EndHorizontal();
 
 
-        Rect tReorderRect = new Rect(0, EditorGUIUtility.singleLineHeight * 5, this.minSize.x - 30, this.minSize.y);
-        mReorderScrollViewPos = GUILayout.BeginScrollView(mReorderScrollViewPos);
-        mSeqReorderableList.DoLayoutList();
+        GUILayout.Box("Sequence List",GUILayout.Width(this.minSize.x * 0.59f));
+
+        mSequenceScrollViewPos = GUILayout.BeginScrollView(mSequenceScrollViewPos);
+
+        //int tMinIndex = 0;
+        //int tMaxIndex = 40;
+        //tMaxIndex = Mathf.Clamp(tMaxIndex, 0, mEditData.SequenceList.Count - 1);
+        //for (int i = tMinIndex; i <= tMaxIndex; i++)
+        for (int i = 0; i < mEditData.SequenceList.Count; i++)
+        {
+            if (mSeqIsExpanded.Count < i + 1)
+            {
+                mSeqIsExpanded.Add(false);
+            }
+            mSeqIsExpanded[i] = EditorGUILayout.Foldout(mSeqIsExpanded[i], string.Format("Beat {1} [{0}]", i, mEditData.SequenceList[i].Beat), true);
+            if (mSeqIsExpanded[i])
+            {
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Space(17);
+                mEditData.SequenceList[i].Beat = CCustomField.FloatField("Beat : ", mEditData.SequenceList[i].Beat, 40);
+                mEditData.SequenceList[i].Input = (InputCode)CCustomField.EnumPopup("Input : ", mEditData.SequenceList[i].Input, 45, 100);
+
+                string tActionCode = mEditData.SequenceList[i].ActionCode;
+                int tActionCodeIndex = mEditData.ActionCodeList.IndexOf(tActionCode);
+                if (tActionCodeIndex == -1)
+                    tActionCodeIndex = 0;
+
+                mEditData.SequenceList[i].ActionCode = mEditData.ActionCodeList[
+                    CCustomField.Popup("ActionCode : ", tActionCodeIndex, mEditData.ActionCodeList.ToArray(), 85, 120)];
+                EditorGUILayout.EndHorizontal();
+            }
+
+        }
         GUILayout.EndScrollView();
 
-        mStageDataSO.ApplyModifiedProperties();
+
+        //Rect tReorderRect = new Rect(0, EditorGUIUtility.singleLineHeight * 5, this.minSize.x - 30, this.minSize.y);
+        //mReorderScrollViewPos = GUILayout.BeginScrollView(mReorderScrollViewPos);
+        //mSeqReorderableList.DoLayoutList();
+        //GUILayout.EndScrollView();
+
+        //mStageDataSO.ApplyModifiedProperties();
     }
 }
 
@@ -269,6 +257,16 @@ public static class CCustomField
     {
         EditorGUILayout.LabelField(tTitle, GUILayout.Width(tLabelWidth));
         return EditorGUILayout.ObjectField(tValue, typeof(T),false,GUILayout.Width(tFieldWidth)) as T;
+    }
+    public static System.Enum EnumPopup(string tTitle,System.Enum tValue, float tLabelWidth = 50, float tFieldWidth = 50)
+    {
+        EditorGUILayout.LabelField(tTitle, GUILayout.Width(tLabelWidth));
+        return EditorGUILayout.EnumPopup(tValue,GUILayout.Width(tFieldWidth));
+    }
+    public static int Popup(string tTitle, int tSelected, string[] tDisplayOptions, float tLabelWidth = 50, float tFieldWidth = 50)
+    {
+        EditorGUILayout.LabelField(tTitle, GUILayout.Width(tLabelWidth));
+        return EditorGUILayout.Popup(tSelected, tDisplayOptions, GUILayout.Width(tFieldWidth));
     }
 }
 
