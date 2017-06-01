@@ -41,10 +41,10 @@ public class CHoleInOne : CThemeBase
     {
         mActionList[CHoleInOneActionCode.SEMONKEY] = (tSeqPlayer, tSeqData) => mAudioSource.PlayOneShot(SEMonkey);
         mActionList[CHoleInOneActionCode.SEMANDRIL] = (tSeqPlayer, tSeqData) => mAudioSource.PlayOneShot(SEMandril);
-        mActionList[CHoleInOneActionCode.SEMONKEYSHORT] = (tSeqPlayer, tSeqData) => mAudioSource.PlayOneShot(SEMonkeyShort);
 
         mActionList[CHoleInOneActionCode.THROWBALL] = ThrowBall;
         mActionList[CHoleInOneActionCode.THROWSTRAIGHTBALL] = ThrowStraightBall;
+        mActionList[CHoleInOneActionCode.MONKEYSHORT] = MonkeyShort;
 
     }
 
@@ -96,7 +96,6 @@ public class CHoleInOne : CThemeBase
         CurrentBall.transform.DOJump(BallEndPoint.position, 2, 1, tSeqPlayer.BPS)
             .SetEase(Ease.Linear);
     }
-    
     private void ThrowStraightBall(CSequencePlayer tSeqPlayer,CSequenceData tData)
     {
         CurrentBall.transform.position = BallStartPoint.position;
@@ -104,5 +103,19 @@ public class CHoleInOne : CThemeBase
         CurrentBall.transform.DOMove(BallEndPoint.position, tSeqPlayer.BPS * 0.1f)
            .SetEase(Ease.Linear);
 
+    }
+    private void MonkeyShort(CSequencePlayer tSeqPlayer, CSequenceData tData)
+    {
+        mAudioSource.PlayOneShot(SEMonkeyShort);
+        if (CurrentBall == null)
+        {
+            CurrentBall = Instantiate(PFBall, BallStartPoint.position, Quaternion.identity);
+            CurrentBall.transform.SetParent(this.transform);
+        }
+        DOTween.Kill(CurrentBall.transform);
+        CurrentBall.transform.position = BallStartPoint.position;
+        CurrentBall.SetActive(true);
+        CurrentBall.transform.DOJump(BallEndPoint.position, 2, 1, tSeqPlayer.BPS)
+            .SetEase(Ease.Linear);
     }
 }

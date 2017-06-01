@@ -121,7 +121,6 @@ public class CSequencePlayer : PresenterBase
     {
         mAudioSource = GetComponent<AudioSource>();
         Debug.Log("BPS : " + BPS);
-
         Queue<CSequenceData> tInsertSeqData = new Queue<CSequenceData>(mCurrentStageData.SequenceList);
         for (int tBeat = 0; tBeat < mAudioSource.clip.length / BPS;)
         {
@@ -188,7 +187,7 @@ public class CSequencePlayer : PresenterBase
                 {
                     mCurrentReceiver.OnBaseBeat(this, SequenceList[mSequenceIndex]);
                 }
-                Debug.Log(SequenceList[mSequenceIndex].Beat);
+                //Debug.Log(SequenceList[mSequenceIndex].Beat);
                 mAlreadySequenceIndex = mSequenceIndex;
             }
 
@@ -247,16 +246,16 @@ public class CSequencePlayer : PresenterBase
         InputResult tResult = InputResult.None;
 
         CSequenceData tSeqData = SequenceList[mSequenceIndex];
-        
 
+        //float tSync = 0.05f;
         if (tSeqData.Input != InputCode.None && tSeqData.Input == tInputCode)//입력데이터가 None아니고, 일치한다면 (정확한 입력)
         {
-            if (tRoundProgress - mCurrentStageData.PerfectRange > mBeatProgress)
+            if (tRoundProgress - mCurrentStageData.PerfectRange /*+ tSync*/ > mBeatProgress)
             {
                 Debug.Log("Too fast");
                 tResult = InputResult.Fast;
             }
-            else if (tRoundProgress + mCurrentStageData.PerfectRange < mBeatProgress)
+            else if (tRoundProgress + mCurrentStageData.PerfectRange /*+ tSync*/ < mBeatProgress)
             {
                 Debug.Log("Too Late");
                 tResult = InputResult.Late;

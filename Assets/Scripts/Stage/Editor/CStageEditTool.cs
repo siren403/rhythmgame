@@ -23,6 +23,8 @@ public class CStageEditTool : EditorWindow
     private float mAddSeqBeat = 0.0f;
     private string mAddActionCode = string.Empty;
     private int mSelectedActionCodeIndex = 0;
+    private int mCopySeqStartIndex = 0;
+    private int mCopySeqEndIndex = 0;
 
     private CStageData mEditData = null;
 
@@ -55,6 +57,7 @@ public class CStageEditTool : EditorWindow
             mSeqReorderableList.drawHeaderCallback = (rect) => EditorGUI.LabelField(rect, "Sequence Items");
             mSeqReorderableList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
             {
+
                 rect.y += 2;
                 rect.height = EditorGUIUtility.singleLineHeight;
                 var tElement = mSeqReorderableList.serializedProperty.GetArrayElementAtIndex(index);
@@ -84,6 +87,7 @@ public class CStageEditTool : EditorWindow
                         mEditData.ActionCodeList.ToArray())];
                 }
 
+                
                 //if (index == mReorderableList.index)
                 //{
                 //    mReorderableList.elementHeight = EditorGUI.GetPropertyHeight(tElement, GUIContent.none, tElement.isExpanded);
@@ -91,6 +95,7 @@ public class CStageEditTool : EditorWindow
             };
             mSeqReorderableList.elementHeightCallback = (int index) =>
             {
+
                 SerializedProperty arrayElement = mSeqReorderableList.serializedProperty.GetArrayElementAtIndex(index);
                 return EditorGUI.GetPropertyHeight(arrayElement, GUIContent.none, arrayElement.isExpanded) + 3;
             };
@@ -113,7 +118,7 @@ public class CStageEditTool : EditorWindow
         mStageDataSO.Update();
 
         GUILayout.BeginHorizontal();
-        mEditData.BPM = CCustomField.IntField("BPM : ", ref mEditData.BPM);
+        mEditData.BPM = CCustomField.IntField("BPM : ", mEditData.BPM);
         EditorGUILayout.LabelField(string.Format("BPS : {0}", mEditData.BPS), GUILayout.Width(120));
         mEditData.StartBeatOffset = CCustomField.FloatField("StartBeatOffset : ", mEditData.StartBeatOffset, 100);
         mEditData.PerfectRange = CCustomField.FloatField("Perfect Range : ", mEditData.PerfectRange, 100);
@@ -217,6 +222,28 @@ public class CStageEditTool : EditorWindow
         }
         EditorGUILayout.EndHorizontal();
 
+        EditorGUILayout.BeginHorizontal();
+        mCopySeqStartIndex = CCustomField.IntField("Index", mCopySeqStartIndex, 40);
+        mCopySeqEndIndex = EditorGUILayout.IntField(mCopySeqEndIndex, GUILayout.Width(50));
+        if (GUILayout.Button("Copy", GUILayout.Width(50)))
+        {
+            if(mCopySeqStartIndex < mCopySeqEndIndex &&
+                mCopySeqEndIndex < mEditData.SequenceList.Count)
+            {
+                for (int i = mCopySeqStartIndex; i < mCopySeqEndIndex + 1; i++)
+                {
+                    var tCopy = mEditData.SequenceList[i].ToCopy(mEditData.SequenceList[mEditData.SequenceList.Count - 1].Beat + 1);
+                    mEditData.SequenceList.Add(tCopy);
+                }
+            }
+            else
+            {
+                Debug.Log("Index Range Error");
+            }
+        }
+        EditorGUILayout.EndHorizontal();
+
+
         Rect tReorderRect = new Rect(0, EditorGUIUtility.singleLineHeight * 5, this.minSize.x - 30, this.minSize.y);
         mReorderScrollViewPos = GUILayout.BeginScrollView(mReorderScrollViewPos);
         mSeqReorderableList.DoLayoutList();
@@ -228,7 +255,7 @@ public class CStageEditTool : EditorWindow
 
 public static class CCustomField
 {
-    public static int IntField(string tTitle,ref int tValue,float tLabelWidth = 50,float tFieldWidth = 50)
+    public static int IntField(string tTitle,int tValue,float tLabelWidth = 50,float tFieldWidth = 50)
     {
         EditorGUILayout.LabelField(tTitle, GUILayout.Width(tLabelWidth));
         return EditorGUILayout.IntField(tValue, GUILayout.Width(tFieldWidth));

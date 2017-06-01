@@ -44,16 +44,24 @@ public class CSequenceData
     {
         _Beat = tBeat;
         _Time = tTime;
-        _Input = InputCode.None;
     }
     public CSequenceData(float tBeat)
     {
         _Beat = tBeat;
-        _Input = InputCode.None;
     }
+    public CSequenceData() { }
+
     public void SetTime(float tTime)
     {
         _Time = tTime;
+    }
+
+    public CSequenceData ToCopy(float tBeat)
+    {
+        CSequenceData tCopy = new CSequenceData(tBeat);
+        tCopy._Input = Input;
+        tCopy._ActionCode = ActionCode;
+        return tCopy;
     }
 }
 
