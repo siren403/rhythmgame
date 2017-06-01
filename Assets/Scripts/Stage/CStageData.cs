@@ -18,6 +18,7 @@ public class CStageData : ScriptableObject
         }
     }
     public float StartBeatOffset;
+    public float PerfectRange = 0.1f;
 
     public AudioClip Music = null;
     public List<CSequenceData> SequenceList = new List<CSequenceData>();

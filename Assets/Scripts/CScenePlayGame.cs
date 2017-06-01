@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ScenePresenter;
 using UniRx;
+using BitStrap;
 
 public class CScenePlayGame : SceneBase
 {
@@ -17,6 +18,7 @@ public class CScenePlayGame : SceneBase
     public CSequencePlayer InstSequencePlayer = null;
     public CHoleInOne InstHoleInOne = null;
     public CStageData CurrentStageData = null;
+    public float SeekBeat = 0;
 
     protected override void BeforeInitialize()
     {
@@ -25,5 +27,11 @@ public class CScenePlayGame : SceneBase
     }
     protected override void Initialize()
     {
+    }
+
+    [Button]
+    public void OnSeek()
+    {
+        InstSequencePlayer.Seek(SeekBeat);
     }
 }

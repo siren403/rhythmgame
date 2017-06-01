@@ -115,7 +115,9 @@ public class CStageEditTool : EditorWindow
         GUILayout.BeginHorizontal();
         mEditData.BPM = CCustomField.IntField("BPM : ", ref mEditData.BPM);
         EditorGUILayout.LabelField(string.Format("BPS : {0}", mEditData.BPS), GUILayout.Width(120));
-        mEditData.StartBeatOffset = CCustomField.FloatField("StartBeatOffset : ", mEditData.StartBeatOffset, 110);
+        mEditData.StartBeatOffset = CCustomField.FloatField("StartBeatOffset : ", mEditData.StartBeatOffset, 100);
+        mEditData.PerfectRange = CCustomField.FloatField("Perfect Range : ", mEditData.PerfectRange, 100);
+
         if (GUILayout.Button("ToJson", GUILayout.Width(50)))
         {
             Debug.Log(JsonUtility.ToJson(mEditData));

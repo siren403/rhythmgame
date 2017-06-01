@@ -44,6 +44,8 @@ public class CHoleInOne : CThemeBase
         mActionList[CHoleInOneActionCode.SEMONKEYSHORT] = (tSeqPlayer, tSeqData) => mAudioSource.PlayOneShot(SEMonkeyShort);
 
         mActionList[CHoleInOneActionCode.THROWBALL] = ThrowBall;
+        mActionList[CHoleInOneActionCode.THROWSTRAIGHTBALL] = ThrowStraightBall;
+
     }
 
     protected override void Initialize()
@@ -95,5 +97,12 @@ public class CHoleInOne : CThemeBase
             .SetEase(Ease.Linear);
     }
     
-    
+    private void ThrowStraightBall(CSequencePlayer tSeqPlayer,CSequenceData tData)
+    {
+        CurrentBall.transform.position = BallStartPoint.position;
+        CurrentBall.SetActive(true);
+        CurrentBall.transform.DOMove(BallEndPoint.position, tSeqPlayer.BPS * 0.1f)
+           .SetEase(Ease.Linear);
+
+    }
 }

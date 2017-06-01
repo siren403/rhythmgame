@@ -94,7 +94,6 @@ public class CSequencePlayer : PresenterBase
     public List<CSequenceData> InsertSequenceList = new List<CSequenceData>();
     public List<CSequenceData> SequenceList = new List<CSequenceData>();
    
-    private float mPerfectRatio = 0.1f;
     private int mSequenceIndex = 0;
     private int mAlreadySequenceIndex = 0;
     private int mSuccessSequenceIndex = 0;
@@ -189,7 +188,7 @@ public class CSequencePlayer : PresenterBase
                 {
                     mCurrentReceiver.OnBaseBeat(this, SequenceList[mSequenceIndex]);
                 }
-
+                Debug.Log(SequenceList[mSequenceIndex].Beat);
                 mAlreadySequenceIndex = mSequenceIndex;
             }
 
@@ -252,12 +251,12 @@ public class CSequencePlayer : PresenterBase
 
         if (tSeqData.Input != InputCode.None && tSeqData.Input == tInputCode)//입력데이터가 None아니고, 일치한다면 (정확한 입력)
         {
-            if (tRoundProgress - mPerfectRatio > mBeatProgress)
+            if (tRoundProgress - mCurrentStageData.PerfectRange > mBeatProgress)
             {
                 Debug.Log("Too fast");
                 tResult = InputResult.Fast;
             }
-            else if (tRoundProgress + mPerfectRatio < mBeatProgress)
+            else if (tRoundProgress + mCurrentStageData.PerfectRange < mBeatProgress)
             {
                 Debug.Log("Too Late");
                 tResult = InputResult.Late;
@@ -268,6 +267,10 @@ public class CSequencePlayer : PresenterBase
                 tResult = InputResult.Perfect;
 
             }
+            Debug.Log(string.Format("{0} [{1}] {2}",
+                tRoundProgress - mCurrentStageData.PerfectRange,
+                mBeatProgress,
+                tRoundProgress + mCurrentStageData.PerfectRange));
         }
       
 
@@ -282,6 +285,20 @@ public class CSequencePlayer : PresenterBase
         mIsPlaying = false;
         mCurrentTime = 0;
     }
+
+    public void Seek(float tBeat)
+    {
+        for (int i = 0; i < SequenceList.Count; i++)
+        {
+            if(SequenceList[i].Beat == tBeat)
+            {
+                mSequenceIndex = i;
+                break;
+            }
+        }
+        mAudioSource.time = SequenceList[mSequenceIndex].Beat * BPS;
+    }
+
 
     /**
     * @brief
