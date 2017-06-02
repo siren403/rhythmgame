@@ -45,7 +45,7 @@ public class CStageEditTool : EditorWindow
 
     private void OnGUI()
     {
-        
+
         DrawCreateEditData();
 
         GUILayout.Space(10);
@@ -76,7 +76,7 @@ public class CStageEditTool : EditorWindow
         GUILayout.BeginHorizontal();
         GUILayout.Label("Evaluation [Low][Mid][High] : ", GUILayout.Width(180));
 
-        mEditData.EvaluationLowRatio = EditorGUILayout.FloatField(mEditData.EvaluationLowRatio,GUILayout.Width(50));
+        mEditData.EvaluationLowRatio = EditorGUILayout.FloatField(mEditData.EvaluationLowRatio, GUILayout.Width(50));
         GUILayout.Box(mEditData.EvaluationMiddleRatio.ToString(), GUILayout.Width(50));
         mEditData.EvaluationHighRatio = EditorGUILayout.FloatField(mEditData.EvaluationHighRatio, GUILayout.Width(50));
 
@@ -89,27 +89,7 @@ public class CStageEditTool : EditorWindow
         GUILayout.EndHorizontal();
 
 
-        GUILayout.BeginHorizontal();
-        GUI.enabled = !(mCurrentTap == SequenceEditTap.Edit);
-        if (GUILayout.Button("Edit"))
-            mCurrentTap = SequenceEditTap.Edit;
-
-        GUI.enabled = !(mCurrentTap == SequenceEditTap.Template);
-        if (GUILayout.Button("Template"))
-            mCurrentTap = SequenceEditTap.Template;
-
-        GUI.enabled = true;
-        GUILayout.EndHorizontal();
-
-        //Sequence Data
-        switch(mCurrentTap)
-        {
-            case SequenceEditTap.Edit:
-                DrawSequenceEdit();
-                break;
-            case SequenceEditTap.Template:
-                break;
-        }
+        DrawSequenceEdit();
     }
 
     private void DrawCreateEditData()
@@ -196,7 +176,7 @@ public class CStageEditTool : EditorWindow
         EditorGUILayout.EndHorizontal();
 
 
-        GUILayout.Box("Sequence List",GUILayout.Width(this.minSize.x * 0.59f));
+        GUILayout.Box("Beat Sequence",GUILayout.Width(this.minSize.x * 0.59f));
 
         mSequenceScrollViewPos = GUILayout.BeginScrollView(mSequenceScrollViewPos);
 
