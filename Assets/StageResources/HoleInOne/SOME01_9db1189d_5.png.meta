@@ -1,9 +1,130 @@
 fileFormatVersion: 2
 guid: 5bdb030f1d6435f4092f94f87bb30930
-timeCreated: 1496389675
+timeCreated: 1496588845
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: SOME01_9db1189d_5_0
+    21300002: SOME01_9db1189d_5_1
+    21300004: SOME01_9db1189d_5_2
+    21300006: SOME01_9db1189d_5_3
+    21300008: SOME01_9db1189d_5_4
+    21300010: SOME01_9db1189d_5_5
+    21300012: SOME01_9db1189d_5_6
+    21300014: SOME01_9db1189d_5_7
+    21300016: SOME01_9db1189d_5_8
+    21300018: SOME01_9db1189d_5_9
+    21300020: SOME01_9db1189d_5_10
+    21300022: SOME01_9db1189d_5_11
+    21300024: SOME01_9db1189d_5_12
+    21300026: SOME01_9db1189d_5_13
+    21300028: SOME01_9db1189d_5_14
+    21300030: SOME01_9db1189d_5_15
+    21300032: SOME01_9db1189d_5_16
+    21300034: SOME01_9db1189d_5_17
+    21300036: SOME01_9db1189d_5_18
+    21300038: SOME01_9db1189d_5_19
+    21300040: SOME01_9db1189d_5_20
+    21300042: SOME01_9db1189d_5_21
+    21300044: SOME01_9db1189d_5_22
+    21300046: SOME01_9db1189d_5_23
+    21300048: SOME01_9db1189d_5_24
+    21300050: SOME01_9db1189d_5_25
+    21300052: SOME01_9db1189d_5_26
+    21300054: SOME01_9db1189d_5_27
+    21300056: SOME01_9db1189d_5_28
+    21300058: SOME01_9db1189d_5_29
+    21300060: SOME01_9db1189d_5_30
+    21300062: SOME01_9db1189d_5_31
+    21300064: SOME01_9db1189d_5_32
+    21300066: SOME01_9db1189d_5_33
+    21300068: SOME01_9db1189d_5_34
+    21300070: SOME01_9db1189d_5_35
+    21300072: SOME01_9db1189d_5_36
+    21300074: SOME01_9db1189d_5_37
+    21300076: SOME01_9db1189d_5_38
+    21300078: SOME01_9db1189d_5_39
+    21300080: SOME01_9db1189d_5_40
+    21300082: SOME01_9db1189d_5_41
+    21300084: SOME01_9db1189d_5_42
+    21300086: SOME01_9db1189d_5_43
+    21300088: SOME01_9db1189d_5_44
+    21300090: SOME01_9db1189d_5_45
+    21300092: SOME01_9db1189d_5_46
+    21300094: SOME01_9db1189d_5_47
+    21300096: SOME01_9db1189d_5_48
+    21300098: SOME01_9db1189d_5_49
+    21300100: SOME01_9db1189d_5_50
+    21300102: SOME01_9db1189d_5_51
+    21300104: SOME01_9db1189d_5_52
+    21300106: SOME01_9db1189d_5_53
+    21300108: SOME01_9db1189d_5_54
+    21300110: SOME01_9db1189d_5_55
+    21300112: SOME01_9db1189d_5_56
+    21300114: SOME01_9db1189d_5_57
+    21300116: SOME01_9db1189d_5_58
+    21300118: SOME01_9db1189d_5_59
+    21300120: SOME01_9db1189d_5_60
+    21300122: SOME01_9db1189d_5_61
+    21300124: SOME01_9db1189d_5_62
+    21300126: SOME01_9db1189d_5_63
+    21300128: SOME01_9db1189d_5_64
+    21300130: SOME01_9db1189d_5_65
+    21300132: SOME01_9db1189d_5_66
+    21300134: SOME01_9db1189d_5_67
+    21300136: SOME01_9db1189d_5_68
+    21300138: SOME01_9db1189d_5_69
+    21300140: SOME01_9db1189d_5_70
+    21300142: SOME01_9db1189d_5_71
+    21300144: SOME01_9db1189d_5_72
+    21300146: SOME01_9db1189d_5_73
+    21300148: SOME01_9db1189d_5_74
+    21300150: SOME01_9db1189d_5_75
+    21300152: SOME01_9db1189d_5_76
+    21300154: SOME01_9db1189d_5_77
+    21300156: SOME01_9db1189d_5_78
+    21300158: SOME01_9db1189d_5_79
+    21300160: SOME01_9db1189d_5_80
+    21300162: SOME01_9db1189d_5_81
+    21300164: SOME01_9db1189d_5_82
+    21300166: SOME01_9db1189d_5_83
+    21300168: SOME01_9db1189d_5_84
+    21300170: SOME01_9db1189d_5_85
+    21300172: SOME01_9db1189d_5_86
+    21300174: SOME01_9db1189d_5_87
+    21300176: SOME01_9db1189d_5_88
+    21300178: SOME01_9db1189d_5_89
+    21300180: SOME01_9db1189d_5_90
+    21300182: SOME01_9db1189d_5_91
+    21300184: SOME01_9db1189d_5_92
+    21300186: SOME01_9db1189d_5_93
+    21300188: SOME01_9db1189d_5_94
+    21300190: SOME01_9db1189d_5_95
+    21300192: SOME01_9db1189d_5_96
+    21300194: SOME01_9db1189d_5_97
+    21300196: SOME01_9db1189d_5_98
+    21300198: SOME01_9db1189d_5_99
+    21300200: SOME01_9db1189d_5_100
+    21300202: SOME01_9db1189d_5_101
+    21300204: SOME01_9db1189d_5_102
+    21300206: SOME01_9db1189d_5_103
+    21300208: SOME01_9db1189d_5_104
+    21300210: SOME01_9db1189d_5_105
+    21300212: SOME01_9db1189d_5_106
+    21300214: SOME01_9db1189d_5_107
+    21300216: SOME01_9db1189d_5_108
+    21300218: SOME01_9db1189d_5_109
+    21300220: SOME01_9db1189d_5_110
+    21300222: SOME01_9db1189d_5_111
+    21300224: SOME01_9db1189d_5_112
+    21300226: SOME01_9db1189d_5_113
+    21300228: SOME01_9db1189d_5_114
+    21300230: SOME01_9db1189d_5_115
+    21300232: SOME01_9db1189d_5_116
+    21300234: SOME01_9db1189d_5_117
+    21300236: SOME01_9db1189d_5_118
+    21300238: SOME01_9db1189d_5_119
+    21300240: SOME01_9db1189d_5_120
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -76,7 +197,1580 @@ TextureImporter:
     overridden: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 505
+        width: 102
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_1
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 505
+        width: 142
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_2
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 505
+        width: 94
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_3
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 401
+        width: 94
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_4
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 417
+        width: 94
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_5
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 433
+        width: 94
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_6
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 345
+        width: 118
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_7
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 257
+        width: 134
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_8
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 257
+        width: 102
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_9
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 257
+        width: 134
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 209
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_11
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 209
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_12
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 209
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_13
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 161
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_14
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 161
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 161
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_16
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 81
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_17
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 81
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_18
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 81
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_19
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 81
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_20
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 81
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_21
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_22
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 1
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_23
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_24
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 1
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_25
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 1
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_26
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 1
+        width: 78
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_27
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 1
+        width: 78
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_28
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 1
+        width: 70
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_29
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 1
+        width: 78
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_30
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 1
+        width: 78
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_31
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 1
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_32
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 1
+        width: 70
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_33
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 1
+        width: 70
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_34
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 89
+        width: 46
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_35
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 89
+        width: 46
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_36
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 89
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_37
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 89
+        width: 62
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_38
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 89
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_39
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 89
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_40
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 89
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_41
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 89
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_42
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 89
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_43
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 89
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_44
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 89
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_45
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 161
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_46
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 161
+        width: 62
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_47
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 161
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_48
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 161
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_49
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 161
+        width: 46
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_50
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 161
+        width: 62
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_51
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 161
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_52
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 161
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_53
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 161
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_54
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 161
+        width: 62
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_55
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 161
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_56
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 161
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_57
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 161
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_58
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 233
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_59
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 233
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_60
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 233
+        width: 86
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_61
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 233
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_62
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 233
+        width: 70
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_63
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 233
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_64
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 233
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_65
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 233
+        width: 70
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_66
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 329
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_67
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 329
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_68
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 329
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_69
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 329
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_70
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 329
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_71
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 329
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_72
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 329
+        width: 86
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_73
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 329
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_74
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 433
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_75
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 433
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_76
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 497
+        width: 54
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_77
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 497
+        width: 54
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_78
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 561
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_79
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 561
+        width: 46
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_80
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 425
+        width: 94
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_81
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 425
+        width: 94
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_82
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 425
+        width: 94
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_83
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 425
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_84
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 425
+        width: 86
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_85
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 425
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_86
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 521
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_87
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 521
+        width: 46
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_88
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 521
+        width: 46
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_89
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 521
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_90
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 521
+        width: 62
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_91
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 521
+        width: 46
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_92
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 521
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_93
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 521
+        width: 62
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_94
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 521
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_95
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 593
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_96
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 593
+        width: 54
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_97
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 593
+        width: 54
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_98
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 593
+        width: 54
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_99
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 593
+        width: 46
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_100
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 593
+        width: 46
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_101
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 593
+        width: 46
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_102
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 593
+        width: 54
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_103
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 593
+        width: 54
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_104
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 593
+        width: 54
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_105
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 657
+        width: 70
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_106
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 657
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_107
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 657
+        width: 70
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_108
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 657
+        width: 70
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_109
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 657
+        width: 86
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_110
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 657
+        width: 86
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_111
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 657
+        width: 46
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_112
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 657
+        width: 54
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_113
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 721
+        width: 54
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_114
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 785
+        width: 54
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_115
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 729
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_116
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 785
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_117
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 753
+        width: 70
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_118
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 753
+        width: 70
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_119
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 753
+        width: 94
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_9db1189d_5_120
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 833
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
