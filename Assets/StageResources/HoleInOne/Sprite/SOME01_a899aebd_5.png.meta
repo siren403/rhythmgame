@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6bdcbb52961a9f947a26f04b32d69f2b
-timeCreated: 1496596103
+timeCreated: 1496629338
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -64,6 +64,7 @@ TextureImporter:
     21300114: SOME01_a899aebd_5_57
     21300116: SOME01_a899aebd_5_58
     21300118: SOME01_a899aebd_5_59
+    21300120: SOME01_a899aebd_5_60
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -100,7 +101,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 60
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -493,9 +494,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 280
+        y: 281
         width: 286
-        height: 246
+        height: 245
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -914,6 +915,19 @@ TextureImporter:
         height: 77
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_a899aebd_5_60
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 561
+        width: 182
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

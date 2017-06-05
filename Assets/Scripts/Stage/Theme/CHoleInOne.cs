@@ -26,6 +26,8 @@ public class CHoleInOne : CThemeBase
     public AudioClip SEMandril = null;
     public AudioClip SEMonkeyShort = null;
 
+    public Animator AnimMonkey = null;
+
     public Renderer BeatPanel = null;
     public Renderer CheckTimingPanel = null;
     public GameObject PFBall = null;
@@ -67,6 +69,7 @@ public class CHoleInOne : CThemeBase
     }
     public override void OnEveryBeat(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
+        AnimMonkey.SetTrigger("TrigBeat");
         if (mActionList.ContainsKey(tData.ActionCode))
         {
             mActionList[tData.ActionCode].Invoke(tSeqPlayer, tData);
