@@ -7,6 +7,9 @@ using DG.Tweening;
 
 public class CHoleInOne : CThemeBase
 {
+    private const int BEAT_LEVEL_1 = 39;
+    private const int BEAT_LEVEL_2 = 76;
+
     protected override IPresenter[] Children
     {
         get
@@ -27,6 +30,7 @@ public class CHoleInOne : CThemeBase
     public AudioClip SEMonkeyShort = null;
 
     public Animator AnimMonkey = null;
+    public Animator AnimMandrill = null;
 
     public Renderer BeatPanel = null;
     public Renderer CheckTimingPanel = null;
@@ -70,6 +74,17 @@ public class CHoleInOne : CThemeBase
     public override void OnEveryBeat(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
         AnimMonkey.SetTrigger("TrigBeat");
+        switch ((int)tSeqPlayer.BeatProgress)
+        {
+            case BEAT_LEVEL_1:
+                AnimMandrill.SetInteger("IntBeatLevel", 1);
+                break;
+            case BEAT_LEVEL_2:
+                AnimMandrill.SetInteger("IntBeatLevel", 2);
+                break;
+        }
+
+        AnimMandrill.SetTrigger("TrigBeat");
         if (mActionList.ContainsKey(tData.ActionCode))
         {
             mActionList[tData.ActionCode].Invoke(tSeqPlayer, tData);

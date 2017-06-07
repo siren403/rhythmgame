@@ -116,7 +116,7 @@ public class CSequencePlayer : PresenterBase
         }
     }
 
-    private float mBeatProgress
+    public float BeatProgress
     {
         get
         {
@@ -233,7 +233,7 @@ public class CSequencePlayer : PresenterBase
             {
                 mCurrentReceiver.OnEveryBeat(this, SequenceList[mSequenceIndex]);
 
-                if(SequenceList[mSequenceIndex].Beat == Mathf.Round(mBeatProgress))
+                if(SequenceList[mSequenceIndex].Beat == Mathf.Round(BeatProgress))
                 {
                     mCurrentReceiver.OnBaseBeat(this, SequenceList[mSequenceIndex]);
                 }
@@ -290,7 +290,7 @@ public class CSequencePlayer : PresenterBase
     private InputResult CheckInputTiming(InputCode tInputCode)
     {
 
-        int tRoundProgress = Mathf.RoundToInt(mBeatProgress);
+        int tRoundProgress = Mathf.RoundToInt(BeatProgress);
 
         InputResult tResult = InputResult.None;
 
@@ -299,12 +299,12 @@ public class CSequencePlayer : PresenterBase
         //float tSync = 0.05f;
         if (tSeqData.Input != InputCode.None && tSeqData.Input == tInputCode)//입력데이터가 None아니고, 일치한다면 (정확한 입력)
         {
-            if (tRoundProgress - mCurrentStageData.PerfectRange /*+ tSync*/ > mBeatProgress)
+            if (tRoundProgress - mCurrentStageData.PerfectRange /*+ tSync*/ > BeatProgress)
             {
                 Debug.Log("Too fast");
                 tResult = InputResult.Fast;
             }
-            else if (tRoundProgress + mCurrentStageData.PerfectRange /*+ tSync*/ < mBeatProgress)
+            else if (tRoundProgress + mCurrentStageData.PerfectRange /*+ tSync*/ < BeatProgress)
             {
                 Debug.Log("Too Late");
                 tResult = InputResult.Late;
@@ -317,7 +317,7 @@ public class CSequencePlayer : PresenterBase
             }
             Debug.Log(string.Format("{0} [{1}] {2}",
                 tRoundProgress - mCurrentStageData.PerfectRange,
-                mBeatProgress,
+                BeatProgress,
                 tRoundProgress + mCurrentStageData.PerfectRange));
         }
 
