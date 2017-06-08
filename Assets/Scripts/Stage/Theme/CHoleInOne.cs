@@ -54,11 +54,7 @@ public class CHoleInOne : CThemeBase
 
     protected override void BeforeInitialize()
     {
-        mActionList[CHoleInOneActionCode.SEMONKEY] = (tSeqPlayer, tSeqData) =>
-        {
-            mAudioSource.PlayOneShot(SEMonkey);
-            AnimMonkey.SetTrigger(KEY_TRIGGER_SHORT);
-        };
+        mActionList[CHoleInOneActionCode.SEMONKEY] = PlaySEMonkey;
         mActionList[CHoleInOneActionCode.SEMANDRIL] = (tSeqPlayer, tSeqData) => mAudioSource.PlayOneShot(SEMandril);
 
         mActionList[CHoleInOneActionCode.THROWBALL] = ThrowBall;
@@ -125,9 +121,16 @@ public class CHoleInOne : CThemeBase
     }
 
 
+
+    private void PlaySEMonkey(CSequencePlayer tSeqPlayer, CSequenceData tData)
+    {
+        mAudioSource.PlayOneShot(SEMonkey);
+        AnimMonkey.SetTrigger(KEY_TRIGGER_SHORT);
+    }
     private void ThrowBall(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
         AnimMonkey.SetTrigger(KEY_TRIGGER_SHORT);
+        AnimGolfer.SetTrigger("TrigShot");
         GameObject tBall = RentBall();
         tBall.transform.position = BallStartPoint.position;
         tBall.transform.DOJump(BallEndPoint.position, 2, 1, tSeqPlayer.BPS)
