@@ -26,6 +26,7 @@ public class CStageEditTool : EditorWindow
     private int mCopySeqStartIndex = 0;
     private int mCopySeqEndIndex = 0;
     private List<bool> mSeqIsExpanded = new List<bool>();
+    private int mAddActionCodeIndex = 0;
 
     private CStageData mEditData = null;
 
@@ -175,8 +176,10 @@ public class CStageEditTool : EditorWindow
         }
         EditorGUILayout.EndHorizontal();
 
-
+        EditorGUILayout.BeginHorizontal();
         GUILayout.Box("Beat Sequence",GUILayout.Width(this.minSize.x * 0.59f));
+        mAddActionCodeIndex = CCustomField.Popup("AddCode : ", mAddActionCodeIndex, mEditData.ActionCodeList.ToArray(), 85, 120);
+        EditorGUILayout.EndHorizontal();
 
         mSequenceScrollViewPos = GUILayout.BeginScrollView(mSequenceScrollViewPos);
 
@@ -198,13 +201,32 @@ public class CStageEditTool : EditorWindow
                 mEditData.SequenceList[i].Beat = CCustomField.FloatField("Beat : ", mEditData.SequenceList[i].Beat, 40);
                 mEditData.SequenceList[i].Input = (InputCode)CCustomField.EnumPopup("Input : ", mEditData.SequenceList[i].Input, 45, 100);
 
-                string tActionCode = mEditData.SequenceList[i].ActionCode;
-                int tActionCodeIndex = mEditData.ActionCodeList.IndexOf(tActionCode);
-                if (tActionCodeIndex == -1)
-                    tActionCodeIndex = 0;
 
-                mEditData.SequenceList[i].ActionCode = mEditData.ActionCodeList[
-                    CCustomField.Popup("ActionCode : ", tActionCodeIndex, mEditData.ActionCodeList.ToArray(), 85, 120)];
+                int n = 0;
+                n = CCustomField.Popup("ActionCode : ", n, mEditData.SequenceList[i].ActionCode.ToArray(), 85, 120);
+
+                for(int s = mEditData.SequenceList[i].ActionCode.Count - 1;s>=0;s--)
+                {
+                    if(string.IsNullOrEmpty(mEditData.SequenceList[i].ActionCode[s]))
+                    {
+                        mEditData.SequenceList[i].ActionCode.RemoveAt(s);
+                    }
+                }
+                if(GUILayout.Button("+",GUILayout.Width(25)))
+                {
+                    mEditData.SequenceList[i].ActionCode.Add(mEditData.ActionCodeList[mAddActionCodeIndex]);
+                }
+                if (GUILayout.Button("-", GUILayout.Width(25)))
+                {
+                    mEditData.SequenceList[i].ActionCode.Remove(mEditData.ActionCodeList[mAddActionCodeIndex]);
+                }
+                //string tActionCode = mEditData.SequenceList[i].ActionCode.Count > 0 ? mEditData.SequenceList[i].ActionCode[0] : string.Empty;
+                //int tActionCodeIndex = mEditData.ActionCodeList.IndexOf(tActionCode);
+                //if (tActionCodeIndex == -1)
+                //    tActionCodeIndex = 0;
+
+                //mEditData.SequenceList[i].ActionCode = mEditData.ActionCodeList[
+                //    CCustomField.Popup("ActionCode : ", tActionCodeIndex, mEditData.ActionCodeList.ToArray(), 85, 120)];
                 EditorGUILayout.EndHorizontal();
             }
 

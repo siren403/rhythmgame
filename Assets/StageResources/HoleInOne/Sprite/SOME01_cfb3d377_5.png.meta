@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: da797469e486e364d9a4bcef8cd85997
-timeCreated: 1496899741
+timeCreated: 1496944186
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -88,6 +88,7 @@ TextureImporter:
     21300162: SOME01_cfb3d377_5_61
     21300164: SOME01_cfb3d377_5_62
     21300166: SOME01_cfb3d377_5_63
+    21300168: SOME01_cfb3d377_5_64
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -1250,6 +1251,19 @@ TextureImporter:
         height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SOME01_cfb3d377_5_64
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 280
+        width: 222
+        height: 239
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

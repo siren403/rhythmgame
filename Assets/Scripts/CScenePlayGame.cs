@@ -4,6 +4,7 @@ using UnityEngine;
 using ScenePresenter;
 using UniRx;
 using BitStrap;
+using DG.Tweening;
 
 public class CScenePlayGame : SceneBase
 {
@@ -20,10 +21,16 @@ public class CScenePlayGame : SceneBase
     public CStageData CurrentStageData = null;
     public float SeekBeat = 0;
 
+    public SpriteRenderer InstFadeSprite = null;
+
     protected override void BeforeInitialize()
     {
         InstSequencePlayer.SetStageData(CurrentStageData);
         InstSequencePlayer.SetReceiver(InstHoleInOne);
+        InstSequencePlayer.OnComplete = () => 
+        {
+            InstFadeSprite.DOFade(1, 0.3f);
+        };
     }
     protected override void Initialize()
     {

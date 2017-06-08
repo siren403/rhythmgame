@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class CSequenceData
@@ -39,8 +40,8 @@ public class CSequenceData
     }
 
     [SerializeField]
-    private string _ActionCode = string.Empty;
-    public string ActionCode
+    private List<string> _ActionCode = new List<string>();
+    public List<string> ActionCode
     {
         get
         {

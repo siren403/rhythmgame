@@ -13,7 +13,11 @@ public class CHoleInOne : CThemeBase
     private const int BEAT_LEVEL_2 = 76;
     private const string KEY_TRIGGER_BEAT = "TrigBeat";
     private const string KEY_TRIGGER_SHORT = "TrigShort";
-
+    private const string KEY_TRIGGER_SHOTREADY = "TrigShotReady";
+    private const string KEY_TRIGGER_SHOT = "TrigShot";
+    private const string KEY_TRIGGER_SHOTFAIL = "TrigShotFail";
+    private const string KEY_TRIGGER_MANDRILLBALL = "TrigBall";
+    
     protected override IPresenter[] Children
     {
         get
@@ -42,10 +46,13 @@ public class CHoleInOne : CThemeBase
 
     public Renderer BeatPanel = null;
     public Renderer CheckTimingPanel = null;
+
+
     public GameObject PFBall = null;
     public Transform BallStartPoint = null;
     public Transform BallEndPoint = null;
     public Transform BallPerpectPoint = null;
+    public Transform BallFailPoint = null;
 
 
     private Dictionary<string, Action<CSequencePlayer, CSequenceData>> mActionList 
@@ -55,12 +62,18 @@ public class CHoleInOne : CThemeBase
     protected override void BeforeInitialize()
     {
         mActionList[CHoleInOneActionCode.SEMONKEY] = PlaySEMonkey;
-        mActionList[CHoleInOneActionCode.SEMANDRIL] = (tSeqPlayer, tSeqData) => mAudioSource.PlayOneShot(SEMandril);
-
         mActionList[CHoleInOneActionCode.THROWBALL] = ThrowBall;
-        mActionList[CHoleInOneActionCode.THROWSTRAIGHTBALL] = ThrowStraightBall;
-        mActionList[CHoleInOneActionCode.MONKEYSHORT] = MonkeyShort;
 
+        mActionList[CHoleInOneActionCode.MONKEYSHORT] = MonkeyShort;
+        mActionList[CHoleInOneActionCode.SEMONKEYSHORT] = PlaySEMonkeyShort;
+
+        mActionList[CHoleInOneActionCode.SEMANDRIL] = (tSeqPlayer, tSeqData) => mAudioSource.PlayOneShot(SEMandril);
+        mActionList[CHoleInOneActionCode.MANDRILLBALL] = (tSeqPlayer, tSeqData) => AnimMandrill.SetTrigger(KEY_TRIGGER_MANDRILLBALL);
+
+        mActionList[CHoleInOneActionCode.THROWSTRAIGHTBALL] = ThrowStraightBall;
+
+
+        mActionList[CHoleInOneActionCode.GOLFERREADY] = (tSeqPlayer, tSeqData) => AnimGolfer.SetTrigger(KEY_TRIGGER_SHOTREADY);
     }
 
     protected override void Initialize()
@@ -82,9 +95,12 @@ public class CHoleInOne : CThemeBase
 
         AnimMandrill.SetTrigger(KEY_TRIGGER_BEAT);
         AnimGolfer.SetTrigger(KEY_TRIGGER_BEAT);
-        if (mActionList.ContainsKey(tData.ActionCode))
+        foreach(var code in tData.ActionCode)
         {
-            mActionList[tData.ActionCode].Invoke(tSeqPlayer, tData);
+            if (mActionList.ContainsKey(code))
+            {
+                mActionList[code].Invoke(tSeqPlayer, tData);
+            }
         }
     }
     public override void OnBaseBeat(CSequencePlayer tSeqPlayer, CSequenceData tData)
@@ -97,11 +113,17 @@ public class CHoleInOne : CThemeBase
         switch (tResult)
         {
             case InputResult.Fast:
+                AnimGolfer.SetTrigger(KEY_TRIGGER_SHOT);
                 CheckTimingPanel.material.DOColor(Color.red, tSeqPlayer.BPS * 0.8f).From();
+                if (mActiveBallPool.Count > 0)
+                {
+                    GameObject tBall = mActiveBallPool.Dequeue();
+                    Destroy(tBall);
+                }
                 break;
             case InputResult.Perfect:
                 CheckTimingPanel.material.DOColor(Color.green, tSeqPlayer.BPS * 0.8f).From();
-
+                AnimGolfer.SetTrigger(KEY_TRIGGER_SHOT);
                 if (mActiveBallPool.Count > 0)
                 {
                     GameObject tBall = mActiveBallPool.Dequeue();
@@ -115,7 +137,31 @@ public class CHoleInOne : CThemeBase
                 }
                 break;
             case InputResult.Late:
+                AnimGolfer.SetTrigger(KEY_TRIGGER_SHOT);
                 CheckTimingPanel.material.DOColor(Color.blue, tSeqPlayer.BPS * 0.8f).From();
+                if (mActiveBallPool.Count > 0)
+                {
+                    GameObject tBall = mActiveBallPool.Dequeue();
+                    Destroy(tBall);
+                }
+                break;
+            case InputResult.Fail:
+                AnimGolfer.SetTrigger(KEY_TRIGGER_SHOTFAIL);
+                if (mActiveBallPool.Count > 0)
+                {
+                    GameObject tBall = mActiveBallPool.Dequeue();
+                    var tSeq = DOTween.Sequence();
+                    tSeq.Append(tBall.transform.DOJump(BallFailPoint.position, 1.5f, 1, tSeqPlayer.BPS)
+                        .SetEase(Ease.OutQuad));
+                    tSeq.Append(tBall.transform.DOMove(new Vector2(0.5f,-1.0f), tSeqPlayer.BPS)
+                        .SetEase(Ease.OutQuad)
+                        .SetRelative());
+                    tSeq.AppendCallback(()=> 
+                    {
+                        ReturnPoolBall(tBall);
+                    });
+                    tSeq.Play();
+                }
                 break;
         }
     }
@@ -130,10 +176,10 @@ public class CHoleInOne : CThemeBase
     private void ThrowBall(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
         AnimMonkey.SetTrigger(KEY_TRIGGER_SHORT);
-        AnimGolfer.SetTrigger("TrigShot");
+        AnimGolfer.SetTrigger(KEY_TRIGGER_SHOTREADY);
         GameObject tBall = RentBall();
         tBall.transform.position = BallStartPoint.position;
-        tBall.transform.DOJump(BallEndPoint.position, 2, 1, tSeqPlayer.BPS)
+        tBall.transform.DOJump(BallEndPoint.position, 2, 1, tSeqPlayer.BPS )
             .SetEase(Ease.Linear);
     }
 
@@ -144,13 +190,18 @@ public class CHoleInOne : CThemeBase
         tBall.transform.DOMove(BallEndPoint.position, tSeqPlayer.BPS * 0.1f)
            .SetEase(Ease.Linear);
     }
-    private void MonkeyShort(CSequencePlayer tSeqPlayer, CSequenceData tData)
+    private void PlaySEMonkeyShort(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
         mAudioSource.PlayOneShot(SEMonkeyShort);
-        GameObject tBall = RentBall();
-        tBall.transform.position = BallStartPoint.position;
-        tBall.transform.DOJump(BallEndPoint.position, 2, 1, tSeqPlayer.BPS)
-            .SetEase(Ease.Linear);
+    }
+    private void MonkeyShort(CSequencePlayer tSeqPlayer, CSequenceData tData)
+    {
+        AnimMonkey.SetTrigger(KEY_TRIGGER_SHORT);
+        //AnimGolfer.SetTrigger(KEY_TRIGGER_SHOTREADY);
+        //GameObject tBall = RentBall();
+        //tBall.transform.position = BallStartPoint.position;
+        //tBall.transform.DOJump(BallEndPoint.position, 2, 1, tSeqPlayer.BPS)
+        //    .SetEase(Ease.Linear);
     }
 
     private GameObject RentBall()

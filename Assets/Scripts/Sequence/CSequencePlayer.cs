@@ -83,6 +83,17 @@ public class CSequencePlayer : PresenterBase
             return mCurrentStageData.StartBeatOffset;
         }
     }
+    public float PerfectRange
+    {
+        get
+        {
+            if(mCurrentStageData == null)
+            {
+                return 0;
+            }
+            return mCurrentStageData.PerfectRange;
+        }
+    }
 
     private float mCurrentTime = 0;
 
@@ -144,6 +155,14 @@ public class CSequencePlayer : PresenterBase
 
     private EvaluationData mCurrentEvaluation = new EvaluationData();
 
+    private Action mOnComplete = null;
+    public Action OnComplete
+    {
+        set
+        {
+            mOnComplete = value;
+        }
+    }
 
     public void SetReceiver(ISequenceReceiver tReceiver)
     {
@@ -164,6 +183,7 @@ public class CSequencePlayer : PresenterBase
     protected override void BeforeInitialize()
     {
         mAudioSource = GetComponent<AudioSource>();
+        mAudioSource.clip = mCurrentStageData.Music;
         Debug.Log("BPS : " + BPS);
         Queue<CSequenceData> tInsertSeqData = new Queue<CSequenceData>(mCurrentStageData.SequenceList);
 
@@ -252,6 +272,11 @@ public class CSequencePlayer : PresenterBase
                 tInputCode = InputCode.SpaceUp;
             }
 
+            if(Input.GetKeyDown(KeyCode.C))//Debug
+            {
+                Debug.Log(BeatProgress);
+            }
+
             InputResult tResult = CheckInputTiming(tInputCode);
             mCurrentReceiver.OnInputResult(this, tResult);
             if(tResult != InputResult.None)
@@ -266,7 +291,8 @@ public class CSequencePlayer : PresenterBase
                     SequenceList[mSequenceIndex].Input != InputCode.None &&
                     tInputCode == InputCode.None)//입력데이터가 None이 아닌데 입력이 없는 경우(미 입력)
                 {
-                    Debug.Log("Fail");
+                    mCurrentReceiver.OnInputResult(this, InputResult.Fail);
+
                 }
                 mSequenceIndex++;
                 CurrentSequenceData = SequenceList[mSequenceIndex];
@@ -275,6 +301,15 @@ public class CSequencePlayer : PresenterBase
             if (mIsMusicPlay == false)
             {
                 mCurrentTime += Time.deltaTime;
+            }
+
+            if(mAudioSource.isPlaying == false)
+            {
+                mIsPlaying = false;
+                if(mOnComplete != null)
+                {
+                    mOnComplete.Invoke();
+                }
             }
         }
     }
@@ -301,24 +336,23 @@ public class CSequencePlayer : PresenterBase
         {
             if (tRoundProgress - mCurrentStageData.PerfectRange /*+ tSync*/ > BeatProgress)
             {
-                Debug.Log("Too fast");
+                //Debug.Log("Too fast");
                 tResult = InputResult.Fast;
             }
             else if (tRoundProgress + mCurrentStageData.PerfectRange /*+ tSync*/ < BeatProgress)
             {
-                Debug.Log("Too Late");
+                //Debug.Log("Too Late");
                 tResult = InputResult.Late;
             }
             else
             {
-                Debug.Log("Perfect!!");
+                //Debug.Log("Perfect!!");
                 tResult = InputResult.Perfect;
-
             }
-            Debug.Log(string.Format("{0} [{1}] {2}",
-                tRoundProgress - mCurrentStageData.PerfectRange,
-                BeatProgress,
-                tRoundProgress + mCurrentStageData.PerfectRange));
+            //Debug.Log(string.Format("{0} [{1}] {2}",
+            //    tRoundProgress - mCurrentStageData.PerfectRange,
+            //    BeatProgress,
+            //    tRoundProgress + mCurrentStageData.PerfectRange));
         }
 
         mCurrentEvaluation.OnCount(tResult);
