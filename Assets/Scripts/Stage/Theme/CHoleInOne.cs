@@ -53,6 +53,9 @@ public class CHoleInOne : CThemeBase
     public Transform BallEndPoint = null;
     public Transform BallPerpectPoint = null;
     public Transform BallFailPoint = null;
+    public Transform BallLatePoint = null;
+    public Transform BallFastPoint = null;
+
 
 
     private Dictionary<string, Action<CSequencePlayer, CSequenceData>> mActionList 
@@ -118,7 +121,13 @@ public class CHoleInOne : CThemeBase
                 if (mActiveBallPool.Count > 0)
                 {
                     GameObject tBall = mActiveBallPool.Dequeue();
-                    Destroy(tBall);
+                    tBall.transform.DOScale(0.3f, tSeqPlayer.BPS).SetEase(Ease.OutQuad);
+                    tBall.transform.DOJump(BallFastPoint.position, 2, 1, tSeqPlayer.BPS)
+                       .SetEase(Ease.OutQuad)
+                       .OnComplete(() =>
+                       {
+                           ReturnPoolBall(tBall);
+                       });
                 }
                 break;
             case InputResult.Perfect:
@@ -142,7 +151,13 @@ public class CHoleInOne : CThemeBase
                 if (mActiveBallPool.Count > 0)
                 {
                     GameObject tBall = mActiveBallPool.Dequeue();
-                    Destroy(tBall);
+                    tBall.transform.DOScale(0.3f, tSeqPlayer.BPS).SetEase(Ease.OutQuad);
+                    tBall.transform.DOJump(BallLatePoint.position, 2, 1, tSeqPlayer.BPS)
+                       .SetEase(Ease.OutQuad)
+                       .OnComplete(() =>
+                       {
+                           ReturnPoolBall(tBall);
+                       });
                 }
                 break;
             case InputResult.Fail:
@@ -151,7 +166,7 @@ public class CHoleInOne : CThemeBase
                 {
                     GameObject tBall = mActiveBallPool.Dequeue();
                     var tSeq = DOTween.Sequence();
-                    tSeq.Append(tBall.transform.DOJump(BallFailPoint.position, 1.5f, 1, tSeqPlayer.BPS)
+                    tSeq.Append(tBall.transform.DOJump(BallFailPoint.position, 0.6f, 1, tSeqPlayer.BPS)
                         .SetEase(Ease.OutQuad));
                     tSeq.Append(tBall.transform.DOMove(new Vector2(0.5f,-1.0f), tSeqPlayer.BPS)
                         .SetEase(Ease.OutQuad)
@@ -197,11 +212,7 @@ public class CHoleInOne : CThemeBase
     private void MonkeyShort(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
         AnimMonkey.SetTrigger(KEY_TRIGGER_SHORT);
-        //AnimGolfer.SetTrigger(KEY_TRIGGER_SHOTREADY);
-        //GameObject tBall = RentBall();
-        //tBall.transform.position = BallStartPoint.position;
-        //tBall.transform.DOJump(BallEndPoint.position, 2, 1, tSeqPlayer.BPS)
-        //    .SetEase(Ease.Linear);
+        
     }
 
     private GameObject RentBall()
@@ -228,4 +239,5 @@ public class CHoleInOne : CThemeBase
         tGameObject.transform.localScale = Vector3.one;
         mBallPool.Enqueue(tGameObject);
     }
+
 }

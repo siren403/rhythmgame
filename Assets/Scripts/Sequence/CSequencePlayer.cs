@@ -98,7 +98,7 @@ public class CSequencePlayer : PresenterBase
     private float mCurrentTime = 0;
 
     private bool mIsPlaying = false;
-    public bool mIsMusicPlay = false;
+    private bool mIsMusicPlay = true;
 
     private AudioSource mAudioSource = null;
 
@@ -182,6 +182,7 @@ public class CSequencePlayer : PresenterBase
 
     protected override void BeforeInitialize()
     {
+        mIsPlaying = false;
         mAudioSource = GetComponent<AudioSource>();
         mAudioSource.clip = mCurrentStageData.Music;
         Debug.Log("BPS : " + BPS);
@@ -236,16 +237,18 @@ public class CSequencePlayer : PresenterBase
     {
         if(mIsPlaying == false && Input.GetKeyUp(KeyCode.Space))
         {
-            mIsPlaying = true;
-            if (mIsMusicPlay)
-            {
-                mAudioSource.Play();
-            }
+            Play();
         }   
         if (mIsPlaying)
         {
             if(mIsMusicPlay && mAudioSource.isPlaying == false)
             {
+                mIsPlaying = false;
+                if (mOnComplete != null)
+                {
+                    mOnComplete.Invoke();
+                }
+
                 Stop();
             }
 
@@ -303,14 +306,6 @@ public class CSequencePlayer : PresenterBase
                 mCurrentTime += Time.deltaTime;
             }
 
-            if(mAudioSource.isPlaying == false)
-            {
-                mIsPlaying = false;
-                if(mOnComplete != null)
-                {
-                    mOnComplete.Invoke();
-                }
-            }
         }
     }
 
@@ -357,6 +352,15 @@ public class CSequencePlayer : PresenterBase
 
         mCurrentEvaluation.OnCount(tResult);
         return tResult;
+    }
+
+    public void Play()
+    {
+        mIsPlaying = true;
+        if (mIsMusicPlay)
+        {
+            mAudioSource.Play();
+        }
     }
 
     /// <summary>

@@ -31,9 +31,16 @@ public class CScenePlayGame : SceneBase
         {
             InstFadeSprite.DOFade(1, 0.3f);
         };
+        InstFadeSprite.color = new Color(0, 0, 0, 1);
     }
     protected override void Initialize()
     {
+        InstFadeSprite.DOFade(0, 0.3f)
+            .SetDelay(0.5f)
+            .OnComplete(() => 
+            {
+                InstSequencePlayer.Play();
+            });
     }
 
     [Button]
