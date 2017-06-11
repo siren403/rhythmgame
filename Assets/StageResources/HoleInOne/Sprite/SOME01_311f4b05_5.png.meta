@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 guid: 38a4722794ee37c4e8a4bc38f908ca59
-timeCreated: 1496389671
+timeCreated: 1497192878
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: result_fail
+    21300002: result_normal
+    21300004: result_perfect
+    21300006: result_test
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -76,7 +80,59 @@ TextureImporter:
     overridden: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: result_fail
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 833
+        width: 286
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: result_normal
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 641
+        width: 286
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: result_perfect
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 449
+        width: 286
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: result_test
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 1
+        width: 286
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
