@@ -139,7 +139,7 @@ public class CStageEditTool : EditorWindow
         mAddActionCode = GUILayout.TextField(mAddActionCode, GUILayout.Width(100));
         if(GUILayout.Button("Add", GUILayout.Width(60)))
         {
-            if(mEditData.ActionCodeList.Contains(mAddActionCode) == false)
+            if(string.IsNullOrEmpty(mAddActionCode) == false && mEditData.ActionCodeList.Contains(mAddActionCode) == false)
             {
                 mEditData.ActionCodeList.Add(mAddActionCode);
                 mAddActionCode = string.Empty;

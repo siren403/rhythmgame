@@ -40,6 +40,7 @@ public class CHoleInOne : CThemeBase
     public Animator AnimMonkey = null;
     public Animator AnimMandrill = null;
     public Animator AnimGolfer = null;
+    public Animator AnimBubble = null;
 
     private Queue<GameObject> mBallPool = new Queue<GameObject>();
     private Queue<GameObject> mActiveBallPool = new Queue<GameObject>();
@@ -76,7 +77,11 @@ public class CHoleInOne : CThemeBase
         mActionList[CHoleInOneActionCode.THROWSTRAIGHTBALL] = ThrowStraightBall;
 
 
-        mActionList[CHoleInOneActionCode.GOLFERREADY] = (tSeqPlayer, tSeqData) => AnimGolfer.SetTrigger(KEY_TRIGGER_SHOTREADY);
+        mActionList[CHoleInOneActionCode.GOLFERREADY] = (tSeqPlayer, tSeqData) =>
+        {
+            //AnimGolfer.SetTrigger(KEY_TRIGGER_SHOTREADY);
+            AnimGolfer.CrossFade("ShotReady", 0);
+        };
     }
 
     protected override void Initialize()
@@ -116,7 +121,8 @@ public class CHoleInOne : CThemeBase
         switch (tResult)
         {
             case InputResult.Fast:
-                AnimGolfer.SetTrigger(KEY_TRIGGER_SHOT);
+                //AnimGolfer.SetTrigger(KEY_TRIGGER_SHOT);
+                AnimGolfer.CrossFade("Shot", 0);
                 CheckTimingPanel.material.DOColor(Color.red, tSeqPlayer.BPS * 0.8f).From();
                 if (mActiveBallPool.Count > 0)
                 {
@@ -132,21 +138,29 @@ public class CHoleInOne : CThemeBase
                 break;
             case InputResult.Perfect:
                 CheckTimingPanel.material.DOColor(Color.green, tSeqPlayer.BPS * 0.8f).From();
-                AnimGolfer.SetTrigger(KEY_TRIGGER_SHOT);
+                //AnimGolfer.SetTrigger(KEY_TRIGGER_SHOT);
+                AnimGolfer.CrossFade("Shot", 0);
+
+                AnimBubble.gameObject.SetActive(true);
+
                 if (mActiveBallPool.Count > 0)
                 {
                     GameObject tBall = mActiveBallPool.Dequeue();
+                    tBall.transform.position = BallEndPoint.position;
                     tBall.transform.DOScale(0, tSeqPlayer.BPS * 2.0f).SetEase(Ease.OutQuad);
                     tBall.transform.DOJump(BallPerpectPoint.position, 4, 1, tSeqPlayer.BPS * 2.0f)
                        .SetEase(Ease.OutQuad)
                        .OnComplete(() =>
                        {
+                           AnimBubble.CrossFade("Perfect", 0);
                            ReturnPoolBall(tBall);
                        });
                 }
                 break;
             case InputResult.Late:
-                AnimGolfer.SetTrigger(KEY_TRIGGER_SHOT);
+                //AnimGolfer.SetTrigger(KEY_TRIGGER_SHOT);
+                AnimGolfer.CrossFade("Shot", 0);
+
                 CheckTimingPanel.material.DOColor(Color.blue, tSeqPlayer.BPS * 0.8f).From();
                 if (mActiveBallPool.Count > 0)
                 {
@@ -186,12 +200,15 @@ public class CHoleInOne : CThemeBase
     private void PlaySEMonkey(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
         mAudioSource.PlayOneShot(SEMonkey);
-        AnimMonkey.SetTrigger(KEY_TRIGGER_SHORT);
+        //AnimMonkey.SetTrigger(KEY_TRIGGER_SHORT);
+        AnimMonkey.CrossFade("Short_0", 0);
     }
     private void ThrowBall(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
-        AnimMonkey.SetTrigger(KEY_TRIGGER_SHORT);
-        AnimGolfer.SetTrigger(KEY_TRIGGER_SHOTREADY);
+        //AnimMonkey.SetTrigger(KEY_TRIGGER_SHORT);
+        //AnimGolfer.SetTrigger(KEY_TRIGGER_SHOTREADY);
+        AnimMonkey.CrossFade("Short_1", 0);
+        AnimGolfer.CrossFade("ShotReady",0);
         GameObject tBall = RentBall();
         tBall.transform.position = BallStartPoint.position;
         tBall.transform.DOJump(BallEndPoint.position, 2, 1, tSeqPlayer.BPS )
@@ -203,7 +220,8 @@ public class CHoleInOne : CThemeBase
         GameObject tBall = RentBall();
         tBall.transform.position = BallStartPoint.position;
         tBall.transform.DOMove(BallEndPoint.position, tSeqPlayer.BPS * 0.1f)
-           .SetEase(Ease.Linear);
+           .SetEase(Ease.Linear)
+           .OnComplete(()=> ReturnPoolBall(mActiveBallPool.Dequeue()));
     }
     private void PlaySEMonkeyShort(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
@@ -211,8 +229,8 @@ public class CHoleInOne : CThemeBase
     }
     private void MonkeyShort(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
-        AnimMonkey.SetTrigger(KEY_TRIGGER_SHORT);
-        
+        //AnimMonkey.SetTrigger(KEY_TRIGGER_SHORT);
+        AnimMonkey.CrossFade("Short_0", 0);
     }
 
     private GameObject RentBall()

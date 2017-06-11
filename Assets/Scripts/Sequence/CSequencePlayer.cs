@@ -281,9 +281,9 @@ public class CSequencePlayer : PresenterBase
             }
 
             InputResult tResult = CheckInputTiming(tInputCode);
-            mCurrentReceiver.OnInputResult(this, tResult);
             if(tResult != InputResult.None)
             {
+                mCurrentReceiver.OnInputResult(this, tResult);
                 mSuccessSequenceIndex = mSequenceIndex;
             }
             
