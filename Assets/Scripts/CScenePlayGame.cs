@@ -21,21 +21,46 @@ public class CScenePlayGame : SceneBase
     public CStageData CurrentStageData = null;
     public float SeekBeat = 0;
 
-    public SpriteRenderer InstFadeSprite = null;
+    public CUIPlayGame InstUIPlayGame = null;
 
     protected override void BeforeInitialize()
     {
         InstSequencePlayer.SetStageData(CurrentStageData);
         InstSequencePlayer.SetReceiver(InstHoleInOne);
-        InstSequencePlayer.OnComplete = () => 
+        InstSequencePlayer.OnComplete = () =>
         {
-            InstFadeSprite.DOFade(1, 0.3f);
+            InstUIPlayGame.DoFade(1)
+                .SetDelay(2.0f)
+                .OnComplete(() =>
+                {
+                    var tEval = InstSequencePlayer.Evaluation.EvaluateValue;
+                    string tEvalComment = string.Empty;
+                    CUIPlayGame.EvaluationType tEvalType = CUIPlayGame.EvaluationType.None;
+
+                    if (tEval >= CurrentStageData.EvaluationGoodRatio)
+                    {
+                        tEvalComment = CurrentStageData.EvaluationGoodText;
+                        tEvalType = CUIPlayGame.EvaluationType.Good;
+                    }
+                    else if (tEval >= CurrentStageData.EvaluationNormalRatio)
+                    {
+                        tEvalComment = CurrentStageData.EvaluationNormalText;
+                        tEvalType = CUIPlayGame.EvaluationType.Normal;
+                    }
+                    else
+                    {
+                        tEvalComment = CurrentStageData.EvaluationFailText;
+                        tEvalType = CUIPlayGame.EvaluationType.Fail;
+                    }
+
+                    InstUIPlayGame.ShowEvaluation(CurrentStageData.EvaluationTitle, tEvalComment, tEvalType);
+                });
         };
-        InstFadeSprite.color = new Color(0, 0, 0, 1);
+        InstUIPlayGame.DoFade(1, 0);
     }
     protected override void Initialize()
     {
-        InstFadeSprite.DOFade(0, 0.3f)
+        InstUIPlayGame.DoFade(0)
             .SetDelay(0.5f)
             .OnComplete(() => 
             {

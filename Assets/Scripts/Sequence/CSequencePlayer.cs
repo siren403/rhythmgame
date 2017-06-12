@@ -154,6 +154,13 @@ public class CSequencePlayer : PresenterBase
     private CStageData mCurrentStageData = null;
 
     private EvaluationData mCurrentEvaluation = new EvaluationData();
+    public EvaluationData Evaluation
+    {
+        get
+        {
+            return mCurrentEvaluation;
+        }
+    }
 
     private Action mOnComplete = null;
     public Action OnComplete

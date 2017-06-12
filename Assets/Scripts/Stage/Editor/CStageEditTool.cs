@@ -74,20 +74,7 @@ public class CStageEditTool : EditorWindow
         GUILayout.EndHorizontal();
 
 
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("Evaluation [Low][Mid][High] : ", GUILayout.Width(180));
-
-        mEditData.EvaluationLowRatio = EditorGUILayout.FloatField(mEditData.EvaluationLowRatio, GUILayout.Width(50));
-        GUILayout.Box(mEditData.EvaluationMiddleRatio.ToString(), GUILayout.Width(50));
-        mEditData.EvaluationHighRatio = EditorGUILayout.FloatField(mEditData.EvaluationHighRatio, GUILayout.Width(50));
-
-        int tRoundPosition = 100;
-        float tHighValue = 1 - mEditData.EvaluationHighRatio;
-        EditorGUILayout.MinMaxSlider(ref mEditData.EvaluationLowRatio, ref tHighValue, 0, 1);
-        mEditData.EvaluationLowRatio = Mathf.Round(mEditData.EvaluationLowRatio * tRoundPosition) / tRoundPosition;
-        mEditData.EvaluationHighRatio = Mathf.Round((1 - tHighValue) * tRoundPosition) / tRoundPosition;
-        mEditData.EvaluationMiddleRatio = Mathf.Round((tHighValue - mEditData.EvaluationLowRatio) * tRoundPosition) / tRoundPosition;
-        GUILayout.EndHorizontal();
+        
 
 
         DrawSequenceEdit();
@@ -178,11 +165,14 @@ public class CStageEditTool : EditorWindow
 
         EditorGUILayout.BeginHorizontal();
         GUILayout.Box("Beat Sequence",GUILayout.Width(this.minSize.x * 0.59f));
-        mAddActionCodeIndex = CCustomField.Popup("AddCode : ", mAddActionCodeIndex, mEditData.ActionCodeList.ToArray(), 85, 120);
+        mAddActionCodeIndex = CCustomField.Popup("AddCode : ", mAddActionCodeIndex, mEditData.ActionCodeList.ToArray(), 70, 120);
         EditorGUILayout.EndHorizontal();
 
+        EditorGUILayout.BeginHorizontal();
+        Rect tRectSeqList = new Rect(0, EditorGUIUtility.singleLineHeight * 9, minSize.x * 0.7f, 380);
+        #region SeqList
+        GUILayout.BeginArea(tRectSeqList);
         mSequenceScrollViewPos = GUILayout.BeginScrollView(mSequenceScrollViewPos);
-
         //int tMinIndex = 0;
         //int tMaxIndex = 40;
         //tMaxIndex = Mathf.Clamp(tMaxIndex, 0, mEditData.SequenceList.Count - 1);
@@ -194,6 +184,14 @@ public class CStageEditTool : EditorWindow
                 mSeqIsExpanded.Add(false);
             }
             mSeqIsExpanded[i] = EditorGUILayout.Foldout(mSeqIsExpanded[i], string.Format("Beat {1} [{0}]", i, mEditData.SequenceList[i].Beat), true);
+            //for (int s = mEditData.SequenceList[i].ActionCode.Count - 1; s >= 0; s--)
+            //{
+            //    if (string.IsNullOrEmpty(mEditData.SequenceList[i].ActionCode[s]))
+            //    {
+            //        mEditData.SequenceList[i].ActionCode.RemoveAt(s);
+            //    }
+            //}
+
             if (mSeqIsExpanded[i])
             {
                 EditorGUILayout.BeginHorizontal();
@@ -205,41 +203,57 @@ public class CStageEditTool : EditorWindow
                 int n = 0;
                 n = CCustomField.Popup("ActionCode : ", n, mEditData.SequenceList[i].ActionCode.ToArray(), 85, 120);
 
-                for(int s = mEditData.SequenceList[i].ActionCode.Count - 1;s>=0;s--)
-                {
-                    if(string.IsNullOrEmpty(mEditData.SequenceList[i].ActionCode[s]))
-                    {
-                        mEditData.SequenceList[i].ActionCode.RemoveAt(s);
-                    }
-                }
+                
                 if(GUILayout.Button("+",GUILayout.Width(25)))
                 {
-                    mEditData.SequenceList[i].ActionCode.Add(mEditData.ActionCodeList[mAddActionCodeIndex]);
+                    if (string.IsNullOrEmpty(mEditData.ActionCodeList[mAddActionCodeIndex]) == false)
+                    {
+                        mEditData.SequenceList[i].ActionCode.Add(mEditData.ActionCodeList[mAddActionCodeIndex]);
+                    }
                 }
                 if (GUILayout.Button("-", GUILayout.Width(25)))
                 {
                     mEditData.SequenceList[i].ActionCode.Remove(mEditData.ActionCodeList[mAddActionCodeIndex]);
                 }
-                //string tActionCode = mEditData.SequenceList[i].ActionCode.Count > 0 ? mEditData.SequenceList[i].ActionCode[0] : string.Empty;
-                //int tActionCodeIndex = mEditData.ActionCodeList.IndexOf(tActionCode);
-                //if (tActionCodeIndex == -1)
-                //    tActionCodeIndex = 0;
 
-                //mEditData.SequenceList[i].ActionCode = mEditData.ActionCodeList[
-                //    CCustomField.Popup("ActionCode : ", tActionCodeIndex, mEditData.ActionCodeList.ToArray(), 85, 120)];
                 EditorGUILayout.EndHorizontal();
             }
 
         }
         GUILayout.EndScrollView();
+        GUILayout.EndArea();
+        #endregion
+        #region Evaluation Texts
+        GUILayout.BeginArea(new Rect(tRectSeqList.width + 5, tRectSeqList.y, (minSize.x - tRectSeqList.width)-10, tRectSeqList.height));
 
+        GUILayout.Label("Evaluation [Fail][Normal][Good]", GUILayout.Width(200));
+        GUILayout.BeginHorizontal();
 
-        //Rect tReorderRect = new Rect(0, EditorGUIUtility.singleLineHeight * 5, this.minSize.x - 30, this.minSize.y);
-        //mReorderScrollViewPos = GUILayout.BeginScrollView(mReorderScrollViewPos);
-        //mSeqReorderableList.DoLayoutList();
-        //GUILayout.EndScrollView();
+        mEditData.EvaluationFailRatio = EditorGUILayout.FloatField(mEditData.EvaluationFailRatio, GUILayout.Width(50));
+        GUILayout.Box(mEditData.EvaluationNormalRatio.ToString(), GUILayout.Width(50));
+        mEditData.EvaluationGoodRatio = EditorGUILayout.FloatField(mEditData.EvaluationGoodRatio, GUILayout.Width(50));
+        GUILayout.EndHorizontal();
 
-        //mStageDataSO.ApplyModifiedProperties();
+        int tRoundPosition = 100;
+        float tHighValue = 1 - mEditData.EvaluationGoodRatio;
+        EditorGUILayout.MinMaxSlider(ref mEditData.EvaluationFailRatio, ref tHighValue, 0, 1);
+        mEditData.EvaluationFailRatio = Mathf.Round(mEditData.EvaluationFailRatio * tRoundPosition) / tRoundPosition;
+        mEditData.EvaluationGoodRatio = Mathf.Round((1 - tHighValue) * tRoundPosition) / tRoundPosition;
+        mEditData.EvaluationNormalRatio = Mathf.Round((tHighValue - mEditData.EvaluationFailRatio) * tRoundPosition) / tRoundPosition;
+
+        GUILayout.Label("* Title");
+        mEditData.EvaluationTitle = GUILayout.TextField(mEditData.EvaluationTitle);
+        EditorGUILayout.Space();
+        GUILayout.Label("* Fail");
+        mEditData.EvaluationFailText = GUILayout.TextField(mEditData.EvaluationFailText);
+        GUILayout.Label("* Normal");
+        mEditData.EvaluationNormalText = GUILayout.TextField(mEditData.EvaluationNormalText);
+        GUILayout.Label("* Good");
+        mEditData.EvaluationGoodText = GUILayout.TextField(mEditData.EvaluationGoodText);
+
+        GUILayout.EndArea();
+        #endregion
+        EditorGUILayout.EndHorizontal();
     }
 }
 
