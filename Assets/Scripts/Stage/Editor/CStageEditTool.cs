@@ -74,10 +74,8 @@ public class CStageEditTool : EditorWindow
         GUILayout.EndHorizontal();
 
 
-        
-
-
         DrawSequenceEdit();
+
     }
 
     private void DrawCreateEditData()
@@ -184,13 +182,13 @@ public class CStageEditTool : EditorWindow
                 mSeqIsExpanded.Add(false);
             }
             mSeqIsExpanded[i] = EditorGUILayout.Foldout(mSeqIsExpanded[i], string.Format("Beat {1} [{0}]", i, mEditData.SequenceList[i].Beat), true);
-            //for (int s = mEditData.SequenceList[i].ActionCode.Count - 1; s >= 0; s--)
-            //{
-            //    if (string.IsNullOrEmpty(mEditData.SequenceList[i].ActionCode[s]))
-            //    {
-            //        mEditData.SequenceList[i].ActionCode.RemoveAt(s);
-            //    }
-            //}
+            for (int s = mEditData.SequenceList[i].ActionCode.Count - 1; s >= 0; s--)
+            {
+                if (string.IsNullOrEmpty(mEditData.SequenceList[i].ActionCode[s]))
+                {
+                    mEditData.SequenceList[i].ActionCode.RemoveAt(s);
+                }
+            }
 
             if (mSeqIsExpanded[i])
             {
@@ -240,7 +238,7 @@ public class CStageEditTool : EditorWindow
         mEditData.EvaluationFailRatio = Mathf.Round(mEditData.EvaluationFailRatio * tRoundPosition) / tRoundPosition;
         mEditData.EvaluationGoodRatio = Mathf.Round((1 - tHighValue) * tRoundPosition) / tRoundPosition;
         mEditData.EvaluationNormalRatio = Mathf.Round((tHighValue - mEditData.EvaluationFailRatio) * tRoundPosition) / tRoundPosition;
-
+        
         GUILayout.Label("* Title");
         mEditData.EvaluationTitle = GUILayout.TextField(mEditData.EvaluationTitle);
         EditorGUILayout.Space();

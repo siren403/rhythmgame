@@ -37,12 +37,12 @@ public class CScenePlayGame : SceneBase
                     string tEvalComment = string.Empty;
                     CUIPlayGame.EvaluationType tEvalType = CUIPlayGame.EvaluationType.None;
 
-                    if (tEval >= CurrentStageData.EvaluationGoodRatio)
+                    if (tEval >= CurrentStageData.EvaluationFailRatio + CurrentStageData.EvaluationNormalRatio)
                     {
                         tEvalComment = CurrentStageData.EvaluationGoodText;
                         tEvalType = CUIPlayGame.EvaluationType.Good;
                     }
-                    else if (tEval >= CurrentStageData.EvaluationNormalRatio)
+                    else if (tEval >= CurrentStageData.EvaluationFailRatio)
                     {
                         tEvalComment = CurrentStageData.EvaluationNormalText;
                         tEvalType = CUIPlayGame.EvaluationType.Normal;

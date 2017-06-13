@@ -242,10 +242,10 @@ public class CSequencePlayer : PresenterBase
     // Update is called once per frame
     void Update()
     {
-        if(mIsPlaying == false && Input.GetKeyUp(KeyCode.Space))
-        {
-            Play();
-        }   
+        //if(mIsPlaying == false && Input.GetKeyUp(KeyCode.Space))
+        //{
+        //    Play();
+        //}   
         if (mIsPlaying)
         {
             if(mIsMusicPlay && mAudioSource.isPlaying == false)
@@ -272,14 +272,13 @@ public class CSequencePlayer : PresenterBase
             }
 
             InputCode tInputCode = InputCode.None;
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (InputManager.GetKey(InputCode.SingleDown))
             {
-                tInputCode = InputCode.SpaceDown;
-
+                tInputCode = InputCode.SingleDown;
             }
-            else if(Input.GetKeyUp(KeyCode.Space))
+            else if(InputManager.GetKey(InputCode.SingleUp))
             {
-                tInputCode = InputCode.SpaceUp;
+                tInputCode = InputCode.SingleUp;
             }
 
             if(Input.GetKeyDown(KeyCode.C))//Debug

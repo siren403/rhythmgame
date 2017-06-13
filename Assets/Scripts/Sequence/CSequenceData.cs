@@ -84,9 +84,9 @@ public enum InputResult
     Fast, Perfect, Late,
     Fail,
 }
-public enum InputCode
-{
-    None,
-    SpaceDown, SpaceUp,
-}
+//public enum InputCode
+//{
+//    None,
+//    SingleDown, SingleUp,
+//}
 
