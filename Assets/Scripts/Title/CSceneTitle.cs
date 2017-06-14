@@ -49,29 +49,7 @@ public class CSceneTitle : SceneBase
 
         mAudioSource.clip = BGMTitle;
         mAudioSource.Play();
-
-        yield return new WaitForSeconds(0.7f);
-        InstTitleTexts[0].SetActive(true);
-        InstTitleTexts[1].SetActive(true);
-
-        yield return new WaitForSeconds(0.7f);
-        InstTitleTexts[2].SetActive(true);
-        InstTitleTexts[3].SetActive(true);
-
-        yield return new WaitForSeconds(1.0f);
-        InstTitleTexts[4].SetActive(true);
-        InstTitleTexts[5].SetActive(true);
-
-        yield return new WaitForSeconds(0.3f);
-        InstTitleTexts[6].SetActive(true);
-        InstTitleTexts[7].SetActive(true);
-
-        yield return new WaitForSeconds(0.4f);
-        InstCharacter.transform.DOLocalMoveY(3, 0.3f).SetEase(Ease.OutExpo).SetRelative();
-        InstStartText.transform.DOLocalMoveY(250, 0.3f).SetEase(Ease.OutExpo).SetRelative();
-
-        yield return new WaitForSeconds(0.5f);
-        SpriteStar.enabled = true;
+        yield return new WaitForSeconds(4.0f);
 
         yield return new WaitUntil(() => InputManager.GetKey(InputCode.SingleDown));
 
