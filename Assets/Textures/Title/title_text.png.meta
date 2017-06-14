@@ -1,13 +1,17 @@
 fileFormatVersion: 2
-guid: 2640a6f49f0536a4a9e18fd1d6fefcc8
-timeCreated: 1497403571
+guid: f49b52eb48721f848bc80d4a5ddf7e81
+timeCreated: 1497424562
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: cellanim.tpl_0
-    21300002: cellanim.tpl_1
-    21300004: cellanim.tpl_2
-    21300006: cellanim.tpl_3
+    21300000: title_text_0
+    21300002: title_text_1
+    21300004: title_text_2
+    21300006: title_text_3
+    21300008: title_text_4
+    21300010: title_text_5
+    21300012: title_text_6
+    21300014: title_text_7
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -44,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 70
+  spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -71,65 +75,117 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Android
-    maxTextureSize: 512
-    textureFormat: 47
+    maxTextureSize: 2048
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cellanim.tpl_0
+      name: title_text_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 393
-        width: 254
-        height: 118
+        x: 0
+        y: 133
+        width: 90
+        height: 117
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: cellanim.tpl_1
+      name: title_text_1
       rect:
         serializedVersion: 2
-        x: 257
-        y: 393
-        width: 254
-        height: 118
+        x: 140
+        y: 126
+        width: 99
+        height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: cellanim.tpl_2
+      name: title_text_2
       rect:
         serializedVersion: 2
-        x: 2
-        y: 337
-        width: 261
-        height: 53
+        x: 271
+        y: 127
+        width: 99
+        height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: cellanim.tpl_3
+      name: title_text_3
       rect:
         serializedVersion: 2
-        x: 2
-        y: 273
-        width: 261
-        height: 62
+        x: 399
+        y: 127
+        width: 108
+        height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: title_text_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 77
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: title_text_5
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 0
+        width: 91
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: title_text_6
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 0
+        width: 86
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: title_text_7
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 0
+        width: 79
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

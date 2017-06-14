@@ -395,13 +395,13 @@ public class CSequencePlayer : PresenterBase
 
 
 
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(Screen.width*0.05f ,Screen.height * 0.9f,Screen.width,Screen.height * 0.1f),
-            string.Format("[{0}] Fast : {1} Perfect : {2} Late : {3}",
-            mCurrentEvaluation.EvaluateValue,
-            mCurrentEvaluation.mFastCount, mCurrentEvaluation.mPerfectCount, mCurrentEvaluation.mLateCount));
-    }
+    //private void OnGUI()
+    //{
+    //    GUI.Label(new Rect(Screen.width*0.05f ,Screen.height * 0.9f,Screen.width,Screen.height * 0.1f),
+    //        string.Format("[{0}] Fast : {1} Perfect : {2} Late : {3}",
+    //        mCurrentEvaluation.EvaluateValue,
+    //        mCurrentEvaluation.mFastCount, mCurrentEvaluation.mPerfectCount, mCurrentEvaluation.mLateCount));
+    //}
 
     /**
     * @brief

@@ -36,7 +36,7 @@ namespace ScenePresenter
                     });
                 });
         }
-        static IEnumerator HyperOptimizedFastAsyncOperationLoad(AsyncOperation operation, IObserver<Unit> observer)
+        public static IEnumerator HyperOptimizedFastAsyncOperationLoad(AsyncOperation operation, IObserver<Unit> observer)
         {
             if (!operation.isDone) yield return operation;
 

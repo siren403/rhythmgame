@@ -43,6 +43,10 @@ public class CStageEditTool : EditorWindow
     {
     }
 
+    private void OnDestroy()
+    {
+        mEditData.SetDirty();
+    }
 
     private void OnGUI()
     {
@@ -54,6 +58,7 @@ public class CStageEditTool : EditorWindow
         if (mEditData == null)
             return;
 
+        Undo.RecordObject(mEditData, string.Format("Stage Data : {0}", mEditData.StageName));
 
         GUILayout.BeginHorizontal();
         mEditData.BPM = CCustomField.IntField("BPM : ", mEditData.BPM);

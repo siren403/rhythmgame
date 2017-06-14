@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class CStageData : ScriptableObject
 {
     public string StageName;
@@ -24,58 +25,10 @@ public class CStageData : ScriptableObject
     public float EvaluationNormalRatio = 0.4f;
     public float EvaluationGoodRatio = 0.3f;
 
-    private string mEvaluationTitle;
-    private string mEvaluationFailText;
-    private string mEvaluationNormalText;
-    private string mEvaluationGoodText;
-    public string EvaluationTitle
-    {
-        get
-        {
-            if(string.IsNullOrEmpty(mEvaluationTitle))
-            {
-                mEvaluationTitle = "title";
-            }
-            return mEvaluationTitle;
-        }
-        set { mEvaluationTitle = value; }
-    }
-    public string EvaluationFailText
-    {
-        get
-        {
-            if (string.IsNullOrEmpty(mEvaluationFailText))
-            {
-                mEvaluationFailText = "fail";
-            }
-            return mEvaluationFailText;
-        }
-        set { mEvaluationFailText = value; }
-    }
-    public string EvaluationNormalText
-    {
-        get
-        {
-            if (string.IsNullOrEmpty(mEvaluationNormalText))
-            {
-                mEvaluationNormalText = "normal";
-            }
-            return mEvaluationNormalText;
-        }
-        set { mEvaluationNormalText = value; }
-    }
-    public string EvaluationGoodText
-    {
-        get
-        {
-            if (string.IsNullOrEmpty(mEvaluationGoodText))
-            {
-                mEvaluationGoodText = "good";
-            }
-            return mEvaluationGoodText;
-        }
-        set { mEvaluationGoodText = value; }
-    }
+    public string EvaluationTitle = "Title";
+    public string EvaluationFailText = "Fail";
+    public string EvaluationNormalText = "Normal";
+    public string EvaluationGoodText = "Good";
 
     public AudioClip Music = null;
     public List<CSequenceData> SequenceList = new List<CSequenceData>();

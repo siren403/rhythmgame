@@ -7,7 +7,7 @@ using System;
 using DG.Tweening;
 
 
-public class CHoleInOne : CThemeBase
+public class CHoleInOne : CStageBase
 {
     private const int BEAT_LEVEL_1 = 39;
     private const int BEAT_LEVEL_2 = 76;
@@ -16,14 +16,6 @@ public class CHoleInOne : CThemeBase
     private const string KEY_TRIGGER_SHOTFAIL = "TrigShotFail";
     private const string KEY_TRIGGER_MANDRILLBALL = "TrigBall";
     
-    protected override IPresenter[] Children
-    {
-        get
-        {
-            return EmptyChildren;
-        }
-    }
-
     public enum ActionType
     {
         None,
@@ -49,10 +41,6 @@ public class CHoleInOne : CThemeBase
     private Queue<GameObject> mBallPool = new Queue<GameObject>();
     private Queue<GameObject> mActiveBallPool = new Queue<GameObject>();
 
-    public Renderer BeatPanel = null;
-    public Renderer CheckTimingPanel = null;
-
-
     public GameObject PFBall = null;
     public Transform BallStartPoint = null;
     public Transform BallEndPoint = null;
@@ -62,12 +50,11 @@ public class CHoleInOne : CThemeBase
     public Transform BallFastPoint = null;
 
 
-
     private Dictionary<string, Action<CSequencePlayer, CSequenceData>> mActionList 
         = new Dictionary<string, Action<CSequencePlayer, CSequenceData>>();
 
 
-    protected override void BeforeInitialize()
+     void Awake()
     {
         mActionList[CHoleInOneActionCode.SEMONKEY] = PlaySEMonkey;
         mActionList[CHoleInOneActionCode.THROWBALL] = ThrowBall;
@@ -88,13 +75,8 @@ public class CHoleInOne : CThemeBase
         };
     }
 
-    protected override void Initialize()
-    {
-
-    }
     public override void OnEveryBeat(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
-        AnimMonkey.SetTrigger(KEY_TRIGGER_BEAT);
         switch ((int)tSeqPlayer.BeatProgress)
         {
             case BEAT_LEVEL_1:
@@ -105,8 +87,6 @@ public class CHoleInOne : CThemeBase
                 break;
         }
 
-        AnimMandrill.SetTrigger(KEY_TRIGGER_BEAT);
-        AnimGolfer.SetTrigger(KEY_TRIGGER_BEAT);
         foreach(var code in tData.ActionCode)
         {
             if (mActionList.ContainsKey(code))
@@ -117,15 +97,15 @@ public class CHoleInOne : CThemeBase
     }
     public override void OnBaseBeat(CSequencePlayer tSeqPlayer, CSequenceData tData)
     {
-        BeatPanel.material.DOColor(Color.white, tSeqPlayer.BPS * 0.5f).From();
-
+        AnimMonkey.SetTrigger(KEY_TRIGGER_BEAT);
+        AnimMandrill.SetTrigger(KEY_TRIGGER_BEAT);
+        AnimGolfer.SetTrigger(KEY_TRIGGER_BEAT);
     }
     public override void OnInputResult(CSequencePlayer tSeqPlayer, InputResult tResult)
     {
         switch (tResult)
         {
             case InputResult.Fast:
-                CheckTimingPanel.material.DOColor(Color.red, tSeqPlayer.BPS * 0.8f).From();
                 mAudioSource.PlayOneShot(SEImpact);
                 AnimGolfer.CrossFade("Shot", 0);
                 if (mActiveBallPool.Count > 0)
@@ -141,7 +121,6 @@ public class CHoleInOne : CThemeBase
                 }
                 break;
             case InputResult.Perfect:
-                CheckTimingPanel.material.DOColor(Color.green, tSeqPlayer.BPS * 0.8f).From();
                 mAudioSource.PlayOneShot(SEImpact);
                 AnimGolfer.CrossFade("Shot", 0);
 
@@ -163,7 +142,6 @@ public class CHoleInOne : CThemeBase
                 }
                 break;
             case InputResult.Late:
-                CheckTimingPanel.material.DOColor(Color.blue, tSeqPlayer.BPS * 0.8f).From();
                 mAudioSource.PlayOneShot(SEImpact);
                 AnimGolfer.CrossFade("Shot", 0);
 
