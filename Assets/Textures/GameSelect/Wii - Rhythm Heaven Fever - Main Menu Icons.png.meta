@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7449734cdfbb5424e99f3395a5a74966
-timeCreated: 1497410279
+timeCreated: 1497507183
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -82,12 +82,12 @@ TextureImporter:
       name: icon_holeinone
       rect:
         serializedVersion: 2
-        x: 1
-        y: 789
-        width: 64
-        height: 64
+        x: 2
+        y: 790
+        width: 62
+        height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

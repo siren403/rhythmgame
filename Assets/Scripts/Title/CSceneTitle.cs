@@ -25,30 +25,20 @@ public class CSceneTitle : SceneBase
 
     public Animator AnimTitle = null;
 
-    public Renderer RenderBG = null;
-
 
     protected override void BeforeInitialize()
     {
+        AudioManager.Inst.Init();
         UITitle.DoFade(1, 0);
     }
 
     protected override void Initialize()
     {
-        
         StartCoroutine(SeqTitle());
     }
 
     private IEnumerator SeqTitle()
     {
-        string tPropName = "_MainTex";
-        DOTween.To(() => RenderBG.material.GetTextureOffset(tPropName),
-            (v) => RenderBG.material.SetTextureOffset(tPropName, v),
-            new Vector2(-10, -10),
-            10)
-            .SetEase(Ease.Linear)
-            .SetLoops(-1, LoopType.Restart);
-
         yield return new WaitForSeconds(1.0f);
         yield return UITitle.DoFade(0).WaitForCompletion();
 

@@ -5,7 +5,6 @@ using ScenePresenter;
 
 public class CSceneGameSelect : SceneBase
 {
-
     public CUIGameSelect InstUIGameSelect = null;
 
     protected override void BeforeInitialize()
@@ -16,5 +15,6 @@ public class CSceneGameSelect : SceneBase
     protected override void Initialize()
     {
         InstUIGameSelect.DoFade(0);
+        AudioManager.Inst.PlayBGM("game_select");
     }
 }

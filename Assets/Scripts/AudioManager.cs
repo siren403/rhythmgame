@@ -6,24 +6,7 @@ using DG.Tweening;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class AudioData
-    {
-        [SerializeField]
-        private string mKey = null;
-        public string Key
-        {
-            get { return mKey; }
-            set { mKey = value; }
-        }
-        [SerializeField]
-        private AudioClip mClip = null;
-        public AudioClip Clip
-        {
-            get { return mClip; }
-            set { mClip = value; }
-        }
-    }
+    
 
     private static AudioManager mInstance = null;
     public static AudioManager Inst
@@ -33,17 +16,17 @@ public class AudioManager : MonoBehaviour
             if(mInstance == null)
             {
                 mInstance = FindObjectOfType<AudioManager>();
+                if(mInstance == null)
+                {
+                    var go = new GameObject("AudioManager");
+                    mInstance = go.AddComponent<AudioManager>();
+                    mInstance.Init();
+                }
                 DontDestroyOnLoad(mInstance.gameObject);
             }
             return mInstance;
         }
     }
-
-    public List<AudioData> SEList = new List<AudioData>();
-    public List<AudioData> BGMList = new List<AudioData>();
-
-    private Dictionary<string, AudioClip> mCachedSEList = new Dictionary<string, AudioClip>();
-    private Dictionary<string, AudioClip> mCachedBGMList = new Dictionary<string, AudioClip>();
 
     private AudioSource mCachedAudioSource = null;
     private AudioSource mAudioSource
@@ -53,48 +36,41 @@ public class AudioManager : MonoBehaviour
             if(mCachedAudioSource == null)
             {
                 mCachedAudioSource = GetComponent<AudioSource>();
+                mCachedAudioSource.playOnAwake = false;
             }
             return mCachedAudioSource;
         }
     }
 
-    private void Awake()
-    {
-        if(mInstance == null)
-        {
-            mInstance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+    private AudioDataObject mAudioData = null;
 
-        foreach(var data in SEList)
+    private bool mIsInit = false;
+
+    public void Init()
+    {
+        if(mIsInit == false)
         {
-            if (string.IsNullOrEmpty(data.Key) == false)
-            {
-                mCachedSEList[data.Key] = data.Clip;
-            }
-        }
-        foreach (var data in BGMList)
-        {
-            if (string.IsNullOrEmpty(data.Key) == false)
-            {
-                mCachedBGMList[data.Key] = data.Clip;
-            }
+            mAudioData = Resources.Load<AudioDataObject>("AudioDataObject");
+            mAudioData.Init();
+            mIsInit = true;
         }
     }
 
     public void PlaySE(string key)
     {
-        if(mCachedSEList.ContainsKey(key))
+        AudioClip tClip = null;
+        if (mAudioData.TryGetSE(key, out tClip))
         {
-            mAudioSource.PlayOneShot(mCachedSEList[key]);
+            mAudioSource.PlayOneShot(tClip);
         }
     }
 
     public void PlayBGM(string key)
     {
-        if (mCachedBGMList.ContainsKey(key))
+        AudioClip tClip = null;
+        if (mAudioData.TryGetBGM(key,out tClip))
         {
-            mAudioSource.clip = mCachedBGMList[key];
+            mAudioSource.clip = tClip;
             mAudioSource.DOFade(1, 0);
             mAudioSource.Play();
         }
