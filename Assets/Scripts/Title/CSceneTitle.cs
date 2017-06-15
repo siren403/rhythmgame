@@ -20,43 +20,52 @@ public class CSceneTitle : SceneBase
         }
     }
 
-    [SerializeField]
-    private AudioClip BGMTitle = null;
 
     public CUITitle UITitle = null;
 
-    public SpriteRenderer SpriteStar = null;
+    public Animator AnimTitle = null;
 
-    public List<GameObject> InstTitleTexts = new List<GameObject>();
-    public GameObject InstCharacter = null;
-    public GameObject InstStartText = null;
+    public Renderer RenderBG = null;
+
 
     protected override void BeforeInitialize()
     {
         UITitle.DoFade(1, 0);
-        SpriteStar.enabled = false;
     }
 
     protected override void Initialize()
     {
+        
         StartCoroutine(SeqTitle());
     }
 
     private IEnumerator SeqTitle()
     {
+        string tPropName = "_MainTex";
+        DOTween.To(() => RenderBG.material.GetTextureOffset(tPropName),
+            (v) => RenderBG.material.SetTextureOffset(tPropName, v),
+            new Vector2(-10, -10),
+            10)
+            .SetEase(Ease.Linear)
+            .SetLoops(-1, LoopType.Restart);
+
         yield return new WaitForSeconds(1.0f);
         yield return UITitle.DoFade(0).WaitForCompletion();
 
-        mAudioSource.clip = BGMTitle;
-        mAudioSource.Play();
+        AnimTitle.SetTrigger("TrigBegin");
+
+        AudioManager.Inst.PlayBGM("title");
         yield return new WaitForSeconds(4.0f);
 
         yield return new WaitUntil(() => InputManager.GetKey(InputCode.SingleDown));
 
+        AudioManager.Inst.StopBGM();
+        AudioManager.Inst.PlaySE("beebeep");
         UITitle.DoFade(1);
         mAudioSource.DOFade(0, 0.3f);
         yield return UITitle.DoFade(1).WaitForCompletion();
 
         NavigationService.NavigateAsync("SceneGameSelect").Subscribe();
     }
+
 }
