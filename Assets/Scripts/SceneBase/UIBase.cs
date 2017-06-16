@@ -8,6 +8,14 @@ public class UIBase : MonoBehaviour
 {
     [SerializeField]
     private Image mInstImgFade = null;
+    protected Image ImgFade
+    {
+        get
+        {
+            return mInstImgFade;
+        }
+    }
+
 
     public Tween DoFade(float value, float duration = 0.3f)
     {

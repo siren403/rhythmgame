@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using BitStrap;
+using ScenePresenter;
+using UniRx;
 
 public class CUIPlayGame : UIBase
 {
@@ -97,8 +99,15 @@ public class CUIPlayGame : UIBase
 
         yield return new WaitUntil(() => InputManager.GetKey(InputCode.SingleDown));
 
-        Debug.Log("Next Title Scene");
+        mAudioSource.Stop();
+        mAudioSource.PlayOneShot(SEBeeBeep);
+        mInstTxtEvalTitle.transform.parent.gameObject.SetActive(false);
+        mInstTxtEvalComment.gameObject.SetActive(false);
+        tEvalObject.SetActive(false);
 
+        yield return new WaitForSeconds(0.5f);
+
+        NavigationService.NavigateAsync("SceneGameSelect").Subscribe();
     }
 
     [Button]

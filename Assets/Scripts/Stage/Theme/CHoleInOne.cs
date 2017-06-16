@@ -23,6 +23,9 @@ public class CHoleInOne : CStageBase
         ThrowBall,
     }
 
+    public AudioClip SEPrologue = null;
+    public Animator AnimPrologue = null;
+
     public AudioClip SEMonkey = null;
     public AudioClip SEMandril = null;
     public AudioClip SEMonkeyShort = null;
@@ -53,6 +56,8 @@ public class CHoleInOne : CStageBase
     private Dictionary<string, Action<CSequencePlayer, CSequenceData>> mActionList 
         = new Dictionary<string, Action<CSequencePlayer, CSequenceData>>();
 
+    private CScenePlayGame mScene = null;
+
 
      void Awake()
     {
@@ -73,6 +78,28 @@ public class CHoleInOne : CStageBase
             //AnimGolfer.SetTrigger(KEY_TRIGGER_SHOTREADY);
             AnimGolfer.CrossFade("ShotReady", 0);
         };
+    }
+
+    public override void SetScene(CScenePlayGame tScene)
+    {
+        mScene = tScene;
+    }
+
+    public override IEnumerator StartPrologue()
+    {
+        mAudioSource.PlayOneShot(SEPrologue);
+        AnimPrologue.SetTrigger("TrigBegin");
+        yield return new WaitForSeconds(SEPrologue.length - 2.2f);
+
+        mScene.InstUIPlayGame.DoFade(1, 0);
+        yield return new WaitForEndOfFrame();
+
+        AnimPrologue.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(1.0f);
+
+        yield return mScene.InstUIPlayGame.DoFade(0).WaitForCompletion();
+
     }
 
     public override void OnEveryBeat(CSequencePlayer tSeqPlayer, CSequenceData tData)
@@ -238,4 +265,5 @@ public class CHoleInOne : CStageBase
         mBallPool.Enqueue(tGameObject);
     }
 
+   
 }

@@ -34,4 +34,8 @@ public abstract class CStageBase : MonoBehaviour, ISequenceReceiver
     public abstract void OnEveryBeat(CSequencePlayer tSeqPlayer, CSequenceData tData);
 
     public abstract void OnInputResult(CSequencePlayer tSeqPlayer, InputResult tResult);
+
+    public abstract IEnumerator StartPrologue();
+
+    public abstract void SetScene(CScenePlayGame tScene);
 }

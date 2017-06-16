@@ -16,6 +16,14 @@ public class CSequencePlayer : PresenterBase
         public void OnEveryBeat(CSequencePlayer tSeqPlayer, CSequenceData tData) { }
         public void OnBaseBeat(CSequencePlayer tSeqPlayer, CSequenceData tData) { }
         public void OnInputResult(CSequencePlayer tSeqPlayer, InputResult tResult) { }
+        public IEnumerator StartPrologue()
+        {
+            yield return null;
+        }
+
+        public void SetScene(CScenePlayGame tScene)
+        {
+        }
     }
     private static ISequenceReceiver EmptyReceiver = new CEmptySequenceReceiver();
     public class EvaluationData
@@ -176,6 +184,7 @@ public class CSequencePlayer : PresenterBase
         if (tReceiver != null)
         {
             mCurrentReceiver = tReceiver;
+            mCurrentReceiver.SetScene(transform.parent.GetComponent<CScenePlayGame>());
         }
         else
         {
@@ -362,11 +371,15 @@ public class CSequencePlayer : PresenterBase
 
     public void Play()
     {
-        mIsPlaying = true;
-        if (mIsMusicPlay)
-        {
-            mAudioSource.Play();
-        }
+        Observable.FromCoroutine(() => mCurrentReceiver.StartPrologue())
+            .Subscribe((_)=> 
+            {
+                mIsPlaying = true;
+                if (mIsMusicPlay)
+                {
+                    mAudioSource.Play();
+                }
+            });
     }
 
     /// <summary>

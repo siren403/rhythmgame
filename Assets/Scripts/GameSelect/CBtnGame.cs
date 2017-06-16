@@ -59,6 +59,9 @@ public class CBtnGame : MonoBehaviour
         {
             AudioManager.Inst.StopBGM();
             AudioManager.Inst.PlaySE("beebeep");
+            InstImgBG.transform.DOScale(0.9f, 0.3f)
+                .From();
+
             mUIParent.DoStartGame(SceneName);
         }
     }
