@@ -40,7 +40,7 @@ public class DoxygenWindow : EditorWindow
 	public string UnityProjectID = null;
 	public string AssestsFolder = null;
 	public string[] Themes = new string[3] {"Default", "Dark and Colorful", "Light and Clean"};
-	public int SelectedTheme = 1;
+	public int SelectedTheme = 0;
 	WindowModes DisplayMode = WindowModes.Generate;
 	static DoxygenConfig Config;
 	static bool DoxyFileExists = false;

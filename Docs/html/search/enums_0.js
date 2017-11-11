@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['inputcode',['InputCode',['../class_beat_counter.html#a55d8a9b5e890ec883f734cb8169a08cb',1,'BeatCounter']]],
-  ['inputresult',['InputResult',['../class_beat_counter.html#a3ff90b4c2b69fff87d5ea9a7a03727ce',1,'BeatCounter']]]
+  ['actiontype',['ActionType',['../class_c_hole_in_one.html#a9f9e5cf8f9bebda44cdc363a547e31c4',1,'CHoleInOne']]]
 ];
